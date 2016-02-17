@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Новости за {{ year|date:"Y" }} год</h3>
+
+		<p style='padding-bottom: 20px;'>
+			{% if previous_year %}
+		        Пред. год: <a href="pressa/newsarchive/{{ previous_year|date:"Y" }}/">{{ previous_year|date:"Y" }}</a>
+		    {% endif %}
+		    {% if next_year %}
+		        След. год: <a href="pressa/newsarchive/{{ next_year|date:"Y" }}/">{{ next_year|date:"Y" }}</a>
+		    {% endif %}
+		</p>
+
+		{% for post in post_list %}
+			<p><a href=pressa/post/{{post.id}}/><em>&#8226;&nbsp;{{post.putdate}}</em>&nbsp;&nbsp;<b>{{post.name}}</a></b></p>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}

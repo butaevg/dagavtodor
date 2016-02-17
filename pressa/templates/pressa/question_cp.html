@@ -1,0 +1,66 @@
+{% extends "base_cp.html" %}
+
+{% load thumbnail %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+	<h2>Обращения граждан</h2><br><br>
+	
+	<table class="cp_table"><tr><th width=15%>Дата</th><th>Имя</th><th width=50%>Сообщение</th><th>Ответ</th><th colspan=3>Действия</th></tr>
+	
+	{% for post in question_list %}
+		<tr>
+		  <td>{{ post.putdate }}</td>
+		  <td>{{ post.name }}<br>{{post.city}} - {{post.email}}</td>  
+		  <td>{{post.msg}}<br><br>
+		  	{% if post.img != '' %}
+				<a class=fancybox data-fancybox-group=gallery href={{post.img}}>
+				{% thumbnail post.img "120x80" as im %}
+				<img src={{ im.url }}></a>&nbsp;&nbsp;	
+				{% endthumbnail %}
+				{% endif %}
+		  </td>
+		  <td>
+				{% if post.answer == '' %}
+				<img src='static/img/icons/no.png' title='Ответа нет'>	
+				{% else  %}
+				<img src='static/img/icons/yes.png' title='Ответ есть'>
+				{% endif %}
+		  </td>
+		  <td><a href=pressa/question/edit/{{post.id}}/><img src='static/img/actions/edit.png' title='Редактировать'></a></td>
+		  <td>
+			{% if post.hide == 1 %}
+			<a href=pressa/question/showhide/{{post.id}}/0/><img src='static/img/actions/show.png' title='Отобразить сообщение на сайте'></a>
+			{% else  %}
+			<a href=pressa/question/showhide/{{post.id}}/1/><img src='static/img/actions/hide.png' title='Скрыть сообщение'></a>
+			{% endif %}
+		  </td>
+		  <td><a href=pressa/question/delete/{{post.id}}/><img src='static/img/actions/delete.png' title='Удалить'></a></td>
+		</tr>
+	{% endfor %}	
+	
+	</table><br><br>
+
+	<div style='margin-left: 30px; margin-bottom: 20px;'>
+		<span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="pressa/questions/cp?page={{ page_obj.previous_page_number }}"><< Пред.</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="pressa/questions/cp?page={{ page_obj.next_page_number }}">След. >></a>
+        {% endif %}
+    	</span>
+	</div>
+
+</div>	
+
+{% endblock %}

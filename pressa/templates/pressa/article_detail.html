@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}{{ article.name }}{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>СМИ о нас</h3>
+
+		<p><b>{{ article.name }}</b></p>
+		<p><em>{{ article.putdate }} </em></p>
+		<p>
+			<table style='float: left;' hspace=15 border=0>
+				<tr><td>
+				        {% if article.pic %} 
+				            <a href={{article.pic}} class=fancybox data-fancybox-group=gallery>
+				            {% thumbnail article.pic "150x100" as im %}
+				            <img src={{ im.url }} border=0>
+				            {% endthumbnail %}    
+				            </a>
+				        {% endif %}
+				    </td></tr>
+				</table>	
+		</p>
+		<p>{{ article.body|linebreaksbr }}</p><br>
+		<p><em>Источник: <a href={{ article.source }} target=blank>{{ article.source_name }}</a></em></p><br>
+
+	</div>
+
+{% endblock %}
