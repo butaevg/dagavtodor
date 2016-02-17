@@ -36,7 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', 
+    'users', 
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,6 +52,12 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'dagavtodor.urls'
+
+AUTH_USER_MODEL = 'users.DUser'
+AUTHENTICATION_BACKENDS = [
+    'users.DUserBackend',
+]
+LOGIN_URL = '/user/login/'
 
 TEMPLATES = [
     {
@@ -100,3 +107,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
