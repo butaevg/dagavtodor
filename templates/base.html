@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name='yandex-verification' content='43b867b92771cf8f' />
+<title>{% block title %}{% endblock %}</title>
+<!-- <base href="http://dagavtodor.ru/"> -->
+<base href="{{request.META.HTTP_HOST}}">
+<link rel="shortcut icon" href="http://dagavtodor.ru/static/css/favicon.ico">
+<link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://dagavtodor.ru/static/css/main.css">
+<script src="http://dagavtodor.ru/static/js/jquery-1.8.min.js"></script>
+<script src="http://dagavtodor.ru/static/js/jquery.liMenuHor.js"></script>
+<script src="http://dagavtodor.ru/static/js/jquery.validationEngine.js"></script>
+<script src="http://dagavtodor.ru/static/js/jquery.tips.js"></script>
+
+<script>
+<!-- menu -->
+$(function()
+{
+	$('.menu_hor').liMenuHor();
+});
+
+<!-- news -->
+$(function() 
+{
+	var $items = $('#news>ul>li');
+	$items.mouseover(function() {
+		$items.removeClass('selected');
+		$(this).addClass('selected');
+
+		var index = $items.index($(this));
+		$('#news>div').hide().eq(index).show();
+	}).eq(0).mouseover();
+});
+
+<!-- tooltips -->
+$(function()
+{
+	$('.tip').liTip();
+});
+</script>
+
+<script type="text/javascript" src="http://dagavtodor.ru/static/js/fancybox/jquery.fancybox.js?v=2.1.4"></script>
+<link rel="stylesheet" type="text/css" href="http://dagavtodor.ru/static/js/fancybox/jquery.fancybox.css?v=2.1.4" media="screen" />
+<script type="text/javascript" src="http://dagavtodor.ru/static/js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('.fancybox').fancybox();
+			});
+			
+		$(document).ready(function() {
+			$(".various").fancybox({
+				maxWidth	: 800,
+				maxHeight	: 600,
+				fitToView	: false,
+				width		: '70%',
+				height		: '70%',
+				autoSize	: true,
+				closeClick	: false,
+				openEffect	: 'elastic',
+				closeEffect	: 'elastic'
+			});
+		});
+</script>
+
+<!-- calendar -->
+<script src="http://dagavtodor.ru/static/js/datepicker.js"></script>
+
+<!-- Table Sorter -->
+<script type="text/javascript" src="http://dagavtodor.ru/static/js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#pogoda_table").tablesorter(); 
+    } 
+);
+</script>
+</head>
+
+<body>
+<script type="text/javascript" src="http://navigator.e-dag.ru/js/widget.js"></script>
+<div id="container">
+	<div id="header">
+		<a href=""><div id="header_1"></div></a>
+		<div id="header_2">
+			<div class="ct">
+				e-mail: dagavtodor@e-dag.ru<br>
+				тел./факс: (8722) 51-78-67<br>
+            </div>
+			
+            <div class="toplinks">
+                <a href="http://instagram.com/dagavtodor" target=blank><img src="http://dagavtodor.ru/static/img/social/insta.png"></a>&nbsp;&nbsp;&nbsp;
+                <a href="https://www.facebook.com/%D0%94%D0%B0%D0%B3%D0%B0%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80-187765401557716/" target=blank><img src="http://dagavtodor.ru/static/img/social/facebook.png"></a>
+            </div>
+		</div>
+	</div>
+	
+	<div id="topbar">
+		<div class="sample" style="z-index:8">
+			<ul class="menu_hor">
+				<li><a href="/">ГЛАВНАЯ</a></li>
+				<li><a>АГЕНТСТВО</a>
+					<ul>	
+					    <li><a href="page/ob-agentstve/">Об Агентстве</a></li>
+						<li><a href="page/rukovodstvo/">Руководство</a></li>
+						<li><a href="page/struktura-agentstva/">Структура</a></li>
+						<li><a href="orgs/pv/">Подведомственные организации</a></li>   
+						<li><a href="page/koordinacionnye-i-soveshatelnye-organy/">Координационные и совещательные органы</a></li>
+						<li><a href="page/istoriya/">История</a></li>
+						<li><a href="contacts/">Контакты</a></li>
+					</ul>
+				</li>
+				<li><a href="docs/">ДОКУМЕНТЫ</a>
+				</li>
+				<li><a>ДЕЯТЕЛЬНОСТЬ</a>
+					<ul>
+					    <li><a href="page/gosprogrammy/">Государственные программы</a></li>
+					    <li><a href="page/plany/">Планы деятельности</a></li>
+					    <li><a href="page/informacionnye-materialy/">Информационные материалы</a></li>
+						<li><a href="roads/">Важнейшие объекты</a></li>
+						<li><a href="roads/progress/105/">Ход работ на важнейших объектах</a></li>
+						<li><a href="page/goszakazy/">Госзаказы</a></li>
+						<li><a href="page/proverki/">Проверки</a></li>
+						<li><a href="page/informaciya-po-go-i-chs/">Информация по ГО и ЧС</a></li>
+						<li><a href="page/gosuslugi/">Государственные услуги</a></li>
+						<li><a href="page/informacionnye-sistemy">Информационные системы</a></li>
+						<li><a href="page/oficialnye-meropriyatiya/">Официальные мероприятия</a></li>
+						<li><a href="page/oficialnye-vystupleniya/">Официальные выступления</a></li>
+					</ul>
+				</li>
+				<li><a>ДОРОЖНОЕ ХОЗЯЙСТВО</a>
+					<ul>
+						<li><a href="page/set-avtomobilnyh-dorog-rd/">Сеть автомобильных дорог РД</a></li>
+						<li><a href="page/struktura-obsluzhivaemoj-seti-dorog/">Структура обслуживаемой сети дорог</a></li>						
+						<li><a href="roads/maps/">Информационные карты районов</a></li>
+						<li><a href="page/svedeniya-po-bdd/">Сведения по БДД</a></li>
+						<li><a href="orgs/dep/">Дорожно-эксплуатационные предприятия</a></li>
+						<li><a href="orgs/vne/">Внешние подрядчики</a></li>
+					</ul>
+				</li>
+				<li><a href="page/statistika/">СТАТИСТИКА</a>
+				</li>
+				<li><a href="page/gossluzhba/">ГОССЛУЖБА</a>
+				</li>	
+				<li><a>МОНИТОРИНГ</a>
+					<ul>						
+						<li><a href="reports/weather/">Дорожные и погодные условия</a></li>
+						<li><a href="roads/webcam/ip/">Видеомониторинг</a></li>
+					</ul>
+				</li>
+				<li><a>ПРЕСС-ЦЕНТР</a>
+					<ul>
+						<li><a href="pressa/newsarchive/2016/">Архив новостей</a></li>
+						<li><a href="pressa/articles/">СМИ о нас</a></li>
+						<li><a href="pressa/adverts/">Объявления</a></li>
+						<li><a href="page/gazeta-dorozhnik-dagestana/">Газета "Дорожник Дагестана"</a></li>
+						<li><a href="pressa/photo/">Фотоархив</a></li>
+						<li><a href="page/obrasheniya-grazhdan">Обращения граждан</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="content">
+
+        {% block content %}{% endblock %}    
+
+	</div>
+
+	<div id="extra"></div>
+</div>
+</body>
+</html>
