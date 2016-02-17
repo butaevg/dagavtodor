@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Авторизация</h3>        
+		
+		<form action="" method=post>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+		<table style="padding-left: 30px; width: 300px;">
+            {% if mess %} 
+            <tr> <td><p style="color: red;">{{mess}} </p></td></tr>
+            {% endif %}
+		    <tr>
+                <td align="right">
+                    <span><b>{{form.username.label}}</b></span>
+                    {% for error in form.username.errors %}
+                    <span style="color: red;">[{{error}}]</span>
+                    {% endfor %}
+            		{{form.username}}<br>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <span><b>{{form.password.label}}</b></span>
+                    {% for error in form.password.errors %}
+                    <span style="color: red;">[{{error}}]</span>
+                    {% endfor %}
+            		{{form.password}}<br>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="submit" value="Вход">
+                </td>
+            </tr>
+        </table>
+        
+        </form><br><br>
+
+	</div>
+
+{% endblock %}
