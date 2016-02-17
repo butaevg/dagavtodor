@@ -1,0 +1,4 @@
+	<span><a href="user/cp/"><img src="static/img/icons/home.png"></a></span>
+{% for link in group.cats.all %} 
+	<span><a href={{link.url}}>{{link.name_menu}}</a></span>
+{% endfor %}
