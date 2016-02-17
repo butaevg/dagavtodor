@@ -25,7 +25,7 @@ SECRET_KEY = '#tg_i!s*c$1eq2e804n9vtypxaquytybw%iccs=qns+t(#-90#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
