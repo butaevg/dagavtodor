@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Контакты</h3>
+
+<table align="center" width="95%">
+<tr><td width="500">Адрес: 367000, РД, г. Махачкала, пр. И. Шамиля, 1-б <br />Телефон (приемная): (8722) 51-78-67<br />E-mail: <a href="mailto:dagavtodor@e-dag.ru" target="blank">dagavtodor@e-dag.ru</a></td><td><a href="static/img/contacts/schema.jpg" class=fancybox data-fancybox-group=gallery title='Схема проезда'><img src="static/img/contacts/schema.jpg" border=0 width=21%></a><a href="static/img/contacts/avtodor.jpg" class=fancybox data-fancybox-group=gallery title='Здание Дагавтодора'><img src="static/img/contacts/avtodor_s.jpg" border=0 width=20%></a><br /></td></tr>
+</table><br><br>
+
+<h3>Телефонный справочник Агентства</h3>
+<table align="center" class="struc" width="95%">
+
+{% for department in department_list %}
+	<tr><td colspan="3" style="background-color: #dce9f9; text-align: center;"><b>{{department.name}}</b></td></tr>
+	{% for employee in department.dep.all %}
+		    <tr>
+		    	<td>{{employee.position}}</td>
+		    	<td>{{employee.name}}</td>
+		    	<td>{{employee.phone}}</td>
+		    </tr>
+	{% endfor %}
+{% endfor %}
+
+</table>
+
+	</div>
+
+{% endblock %}
