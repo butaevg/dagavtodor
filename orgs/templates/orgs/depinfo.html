@@ -1,0 +1,36 @@
+{% extends "basecp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content">
+
+	<h2></h2><br><br>
+	
+	<table>
+		<tr>
+			<td><img src=static/img/user/org_rr.png></td><td><a href=orgs/depinfo/{{dep.org_id}}/6/>Резюме руководителя</a></td>
+			<td><img src=static/img/user/org_ks.png></td><td><a href=orgs/depinfo/{{dep.org_id}}/1/>Кадровый состав</a></td>
+			<td><img src=static/img/user/org_sd.png></td><td><a href=orgs/depinfo/{{dep.org_id}}/2/>Совет директоров</a></td>
+			<td><img src=static/img/user/org_ec.png></td><td><a href=orgs/depinfo/{{dep.org_id}}/3/>Экономические показатели</a></td>
+			<td><img src=static/img/user/org_tp.png></td><td><a href=orgs/depinfo/{{dep.org_id}}/4/>Технические показатели</a></td>
+			<td><img src=static/img/user/org_tech.png></td><td><a href=orgs/depinfo/{{dep.org_id}}/5/>Транспорт и техника</a></td>
+		</tr>
+	</table><br>
+	
+	<p align=center><h2>{{dep.catname}} {{org.fullname}}</h2></p>
+	<p align=center><img src=static/img/org_info/{{dep.icon}}></p>
+
+</div>	
+
+<div id="sidebar"><ul><li><h2>ДЭПы</h2><ul>
+	{% for row in orgs %}
+		<li><a href=orgs/depinfo/{{row.id}}/{{cat}}/>{{row.fullname}}</a></li>
+	{% endfor %} 
+	</ul></li></ul>
+</div>
+
+<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}

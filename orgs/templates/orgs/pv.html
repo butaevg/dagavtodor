@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Подведомственные организации{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Подведомственные организации</h3>
+
+		<h3>Учреждения:</h3>
+		{% for org in uch %}
+			<p><span class='contractor'><a href="orgs/{{org.id}}/">{{org.name}}</a></span><br>
+			{% if org.address %} {{org.address}}, {{org.phone}}<br> {% endif %}
+			{% if org.email %} e-mail: {{org.email}}<br> {% endif %}
+			{% if org.site %} Сайт: <a href=http://{{org.site}} target=blank>{{org.site}}</a><br> {% endif %}
+			{% if org.director %} Руководитель: {{org.director}}<br> {% endif %}
+			</p>
+		{% endfor %}
+
+		<h3>Предприятия:</h3>
+		{% for org in pre %}
+			<p><span class='contractor'><a href="orgs/{{org.id}}/">{{org.name}}</a></span><br>
+			{% if org.address %} {{org.address}}, {{org.phone}}<br> {% endif %}
+			{% if org.email %} e-mail: {{org.email}}<br> {% endif %}
+			{% if org.site %} Сайт: <a href=http://{{org.site}} target=blank>{{org.site}}</a><br> {% endif %}
+			{% if org.director %} Руководитель: {{org.director}}<br> {% endif %}
+			</p>
+		{% endfor %}
+
+		<h3>Акционерные общества (акции которых находятся в госсобственности РД):</h3>
+		{% for org in dep %}
+			<p><span class='contractor'><a href="orgs/{{org.id}}/">{{org.name}}</a></span><br>
+			{% if org.address %} {{org.address}}, {{org.phone}}<br> {% endif %}
+			{% if org.email %} e-mail: {{org.email}}<br> {% endif %}
+			{% if org.site %} Сайт: <a href=http://{{org.site}} target=blank>{{org.site}}</a><br> {% endif %}
+			{% if org.director %} Руководитель: {{org.director}}<br> {% endif %}
+			</p>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}
