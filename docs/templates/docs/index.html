@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Документы{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Документы</h3>
+
+		<table class=docs_table><tr>
+			  <td><table class=docs_menu_table>
+			{% for cat in cats %}
+				<tr><td><a href=docs/{{ cat.id }}/>{{ cat.name }}</a></td></tr>
+			{% endfor %}
+		</table></td><td style='padding-left: 20px;'>
+			{% for doc in docs %}
+				<p><a href={{ doc.url }}>{{ doc.name }}</a></p>
+			{% endfor %}	
+		</td></tr></table>
+
+	</div>
+
+{% endblock %}
