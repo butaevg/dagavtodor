@@ -14,7 +14,7 @@
 			{% endfor %}
 		</table></td><td style='padding-left: 20px;'>
 			{% for doc in docs %}
-				<p><a href={{ doc.url }}>{{ doc.name }}</a></p>
+				<p><a href={{MEDIA_URL}}{{ doc.url }}>{{ doc.name }}</a></p>
 			{% endfor %}	
 		</td></tr></table>
 
