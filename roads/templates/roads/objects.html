@@ -9,7 +9,7 @@
 
 		{% for road in roads %}
 				<fieldset><legend><b>{{ road.name }}</b></legend>
-				<a href={{ road.pic }} class=fancybox title='{{ road.name }}'><img src={{ road.pic }} style='width: 100px; float: left; padding-right: 10px;'></a><br>{{ road.body }} <br>
+				<a href={{ road.pic }} class=fancybox title='{{ road.name }}'><img src={{MEDIA_URL}}{{ road.pic }} style='width: 100px; float: left; padding-right: 10px;'></a><br>{{ road.body }} <br>
 				</fieldset><br><br>
 			{% endfor %}
 
