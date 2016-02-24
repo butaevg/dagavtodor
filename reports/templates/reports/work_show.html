@@ -23,7 +23,7 @@
 		<b>Количество работников в смену: </b>{{work.pers}}<br><br>
 
 		{% for img in work.pics.all %}
-			<a class="fancybox" data-fancybox-group="gallery" href="{{img.pic}}">
+			<a class="fancybox" data-fancybox-group="gallery" href="{{MEDIA_URL}}{{img.pic}}">
     			{% thumbnail img.pic "150x100" as im %}
     			<img src="{{ im.url }}">
     			{% endthumbnail %}

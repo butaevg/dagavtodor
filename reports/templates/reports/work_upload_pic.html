@@ -30,7 +30,7 @@
         <ul>
         {% for pic in imgs %}
             <li class=''>
-                <a class=fancybox data-fancybox-group=gallery title='' href={{ pic.pic }}>
+                <a class=fancybox data-fancybox-group=gallery href={{MEDIA_URL}}{{ pic.pic }}>
                     {% thumbnail pic.pic "150x100" as im %}
         			<img src="{{ im.url }}">
         			{% endthumbnail %}
