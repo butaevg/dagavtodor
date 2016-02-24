@@ -17,7 +17,7 @@
 				{% if post.city %} ( <i><b>{{ post.city }}</b></i> )  {% endif %}
 				<br>{{ post.msg }}</p><p>
 				{% if post.img %} 
-				    <a class=fancybox data-fancybox-group=gallery href=upload/{{ post.img_1 }}>
+				    <a class=fancybox data-fancybox-group=gallery href={{MEDIA_URL}}{{ post.img_1 }}>
 				        {% thumbnail post.img "150x100" as im %}
     					<img src={{ im.url }}>
     					{% endthumbnail %}

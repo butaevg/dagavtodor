@@ -15,7 +15,7 @@
 			<table style='float: left;' hspace=15 border=0>
 				<tr><td>
 				        {% if article.pic %} 
-				            <a href={{article.pic}} class=fancybox data-fancybox-group=gallery>
+				            <a href={{MEDIA_URL}}{{article.pic}} class=fancybox data-fancybox-group=gallery>
 				            {% thumbnail article.pic "150x100" as im %}
 				            <img src={{ im.url }} border=0>
 				            {% endthumbnail %}    

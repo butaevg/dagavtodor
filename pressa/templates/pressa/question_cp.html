@@ -18,7 +18,7 @@
 		  <td>{{ post.name }}<br>{{post.city}} - {{post.email}}</td>  
 		  <td>{{post.msg}}<br><br>
 		  	{% if post.img != '' %}
-				<a class=fancybox data-fancybox-group=gallery href={{post.img}}>
+				<a class=fancybox data-fancybox-group=gallery href={{MEDIA_URL}}{{post.img}}>
 				{% thumbnail post.img "120x80" as im %}
 				<img src={{ im.url }}></a>&nbsp;&nbsp;	
 				{% endthumbnail %}

@@ -9,7 +9,7 @@
 	<div id="page">
 		<h3><a href="pressa/newsarchive/2016/">Новости</a> > {{ post.name }}</h3>
 
-		<p><a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{ post.mainpic }}>
+		<p><a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{MEDIA_URL}}{{ post.mainpic }}>
 		{% thumbnail post.mainpic "150x100" crop="center" as main %}
 			<img src="{{ main.url }}" style="float: left; margin: 7px 15px 7px 0;">
 		{% endthumbnail %}</a>
@@ -22,7 +22,7 @@
 			<ul>
 			{% for img in post.pics.all %}
 				<li class=''>
-					<a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{ img.pic }}>
+					<a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{MEDIA_URL}}{{ img.pic }}>
     					{% thumbnail img.pic "150x100" as im %}
     					<img src={{ im.url }}>
     					{% endthumbnail %}
