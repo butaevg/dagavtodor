@@ -11,7 +11,7 @@ TYPE_OF_OBJ = (
 class Road(models.Model):
     name = models.CharField(max_length=512, verbose_name='Название')
     body = models.TextField(blank=True, verbose_name='Описание')
-    pic = models.ImageField(max_length=250, blank=True, upload_to='upload/roads', verbose_name='Карта-схема')
+    pic = models.ImageField(max_length=250, blank=True, upload_to='roads', verbose_name='Карта-схема')
     cat = models.CharField(max_length=3, choices=TYPE_OF_OBJ, verbose_name='Вид')
     contractor = models.ForeignKey(DUser, blank=True, verbose_name='Подрядчик')
     onsite = models.BooleanField(default=False, verbose_name='Показывать на сайте')
@@ -33,7 +33,7 @@ class Report(models.Model):
         ordering = ['-id']
 
 class ReportImg(models.Model):
-    url = models.ImageField(max_length=250, upload_to='upload/roads', verbose_name='Фото')
+    url = models.ImageField(max_length=250, upload_to='roads/%Y-%m-%d/', verbose_name='Фото')
     report = models.ForeignKey(Report, related_name='pics', verbose_name='Отчет')
 
 
@@ -49,7 +49,7 @@ class Map(models.Model):
     mest_dor = models.CharField(max_length=20, verbose_name='Местные')
     res_dor_asf = models.CharField(max_length=20, verbose_name='Республиканские - асфальт')
     mest_dor_asf = models.CharField(max_length=20, verbose_name='Местные - асфальт')
-    map_rayon = models.ImageField(max_length=100, blank=True, upload_to='upload/maps', verbose_name='Карта')
+    map_rayon = models.ImageField(max_length=100, blank=True, upload_to='maps', verbose_name='Карта')
     
     def __unicode__(self):
         return self.rayon
@@ -77,7 +77,7 @@ class Cam3g(models.Model):
 class CamIp(models.Model):
     name = models.CharField(max_length=300, verbose_name='Название')
     html = models.TextField(verbose_name='HTML-код')
-    img = models.ImageField(upload_to='upload/webcam', verbose_name='Картинка')
+    img = models.ImageField(upload_to='webcam', verbose_name='Картинка')
     ip = models.CharField(max_length=50, blank=True, verbose_name='IP-адрес')
     hide = models.BooleanField(default=False, verbose_name='Скрыть')
     

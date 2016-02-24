@@ -100,7 +100,7 @@ class Work(models.Model):
 
 
 class WorkImg(models.Model):
-    pic = models.ImageField(max_length=250, upload_to='upload/work')
+    pic = models.ImageField(max_length=250, upload_to='work/%Y-%m-%d/')
     work = models.ForeignKey(Work, related_name="pics")
 
 
@@ -108,7 +108,7 @@ class Machine(models.Model):
     name = models.CharField(max_length=512, verbose_name='Наименование техники') 
     body = models.TextField(blank=True, verbose_name='Описание')
     year_issue = models.CharField(max_length=5, verbose_name='Год выпуска')
-    pic_1 = models.ImageField(max_length=250, upload_to='upload/machine', verbose_name='Фотография') 
+    pic_1 = models.ImageField(max_length=250, upload_to='machine', verbose_name='Фотография') 
     putdate = models.DateTimeField(auto_now_add=True)
     dep = models.ForeignKey(DUser, related_name='oao') 
   
