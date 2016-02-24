@@ -1,0 +1,24 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2>Техника на списание</h2>
+    <h2><a href="reports/machines/create/">Добавить технику</a></h2><br><br>
+
+    {% for row in machine_list %}
+
+		<br><br><fieldset><legend><b>{{ row.putdate }}</b></legend>	
+		<b>Наименование: </b>{{row.name}}<br>
+		<b>Описание: </b>{{row.body}}<br>
+		<b>Год выпуска: </b>{{row.year_issue}}<br>
+		<b>Организация: </b>{{row.dep}}<br><br>
+		</fieldset><br>
+
+	{% endfor %} 
+      
+</div>  
+{% endblock %}

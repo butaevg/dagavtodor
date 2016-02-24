@@ -1,0 +1,50 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content">
+
+    <h2>{{rayon.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=reports/work/cp/>Показать по объектам</a></h2><br>
+
+    {% for row in wth %}
+
+        <br><br><br><fieldset><legend><b>{{ row.putdate }}</b></legend>
+        <b>Состояние погоды: </b>{{row.sost}}<br>
+        <b>Температура: </b>{{row.temp}}<br>
+        <b>Проезжаемость на дорогах респ. значения: </b>{{row.pr_r}}<br>
+        <b>Проезжаемость на дорогах мест. значения: </b>{{row.pr_m}}<br><br>
+        <b>Проводимые работы: </b><br>{{row.works}}</p>
+        </fieldset><br>
+
+    {% endfor %}
+    
+    <div style='margin-left: 30px; margin-bottom: 40px;'>
+        <span class="step-links">
+        {% if wth.has_previous %}
+            <a href="reports/weather/{{rayon.id}}/?page={{ wth.previous_page_number }}"><< Пред.</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ wth.number }} из {{ wth.paginator.num_pages }}.
+        </span>
+
+        {% if wth.has_next %}
+            <a href="reports/weather/{{rayon.id}}/?page={{ wth.next_page_number }}">След. >></a>
+        {% endif %}
+        </span>
+    </div>
+
+</div>
+
+<div id="sidebar"><ul><li><h2>Районы</h2><ul>
+    {% for row in rayons %}
+        <li><a href=reports/weather/{{row.id}}/>{{row.name}}</a></li>
+    {% endfor %} 
+    </ul></li></ul>
+</div>
+<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}

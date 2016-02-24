@@ -1,0 +1,43 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2><a href=reports/psd/my/><<< cписок проектов</a></h2><br><br>
+
+    <h2>Ход разработки ПСД</h2><strong>{{road.name}}</strong><br><br><br><br>
+
+    <span style="color: red;">Внимание!<br> В качестве десятичного разделителя писать "." (точка)!<br> После точки не более 3-х цифр!</span><br><br>
+              
+           <form action="" method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <h3><strong>{{form.price.label}}<i>(исправить при необходимости)</i></strong>        
+                {% for error in form.price.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}</h3>
+                {{form.price}}
+
+                <h3><strong>{{form.exe.label}} {{road.price}}</strong>        
+                {% for error in form.exe.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}</h3>
+                {{form.exe}}
+
+                <h3><strong>{{form.getsum.label}} {{road.price}}</strong>        
+                {% for error in form.getsum.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}</h3>
+                {{form.getsum}}
+
+                <h3></h3>
+                <input type=hidden name=name value='{{road.name}}'>
+                <input type=submit value=Сохранить> 
+            </form>
+
+</div>
+{% endblock %}

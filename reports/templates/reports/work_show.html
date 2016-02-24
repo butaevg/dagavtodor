@@ -1,0 +1,75 @@
+{% extends "base_cp.html" %}
+
+{% load thumbnail %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content">
+
+	<h2>Сведения о проводимых работах на объектах&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=reports/weather/cp/>Показать по районам</a></h2><br>
+	<h2>{{road.name}}</h2>
+	
+	{% for work in works %}
+		<br><br><br><fieldset>
+		<legend><b>{{ work.putdate }}</b></legend>	
+
+		<b>Наименование выполненных работ и пикетажное положение: </b><br>{{work.works}}<br><br>
+
+		<b>Наименование техники (механизмов) и количество единиц в смену: </b><br>{{work.tech}}<br><br>
+
+		<b>Количество работников в смену: </b>{{work.pers}}<br><br>
+
+		{% for img in work.pics.all %}
+			<a class="fancybox" data-fancybox-group="gallery" href="{{img.pic}}">
+    			{% thumbnail img.pic "150x100" as im %}
+    			<img src="{{ im.url }}">
+    			{% endthumbnail %}
+    		</a>&nbsp;
+		{% endfor %}
+
+		</fieldset><br>
+
+	{% endfor %}
+
+	<div style='margin-left: 30px; margin-bottom: 40px;'>
+		<span class="step-links">
+        {% if works.has_previous %}
+            <a href="reports/work/{{road.id}}/?page={{ works.previous_page_number }}"><< Пред.</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ works.number }} из {{ works.paginator.num_pages }}.
+        </span>
+
+        {% if works.has_next %}
+            <a href="reports/work/{{road.id}}/?page={{ works.next_page_number }}">След. >></a>
+        {% endif %}
+    	</span>
+	</div>
+
+</div>	
+
+<div id="sidebar"><ul><li><h2>Строительство</h2><ul>
+	{% for row in stroy %}
+		<li><a href=reports/work/{{row.id}}/>{{row.name}}</a></li>
+	{% endfor %} 
+	</ul></li></ul>
+</div>
+<div id="sidebar"><ul><li><h2>Реконструкция</h2><ul>
+	{% for row in rec %}
+		<li><a href=reports/work/{{row.id}}/>{{row.name}}</a></li>
+	{% endfor %} 
+	</ul></li></ul>
+</div>
+<div id="sidebar"><ul><li><h2>Ремонт</h2><ul>
+	{% for row in rem %}
+		<li><a href=reports/work/{{row.id}}/>{{row.name}}</a></li>
+	{% endfor %} 
+	</ul></li></ul>
+</div>
+<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}

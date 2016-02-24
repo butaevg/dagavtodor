@@ -1,0 +1,36 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+	<h2>Отчет за {% now "j E Y" %} года о проводимой работе по 
+содержанию дорог по данным сети Instagram
+</h2><br><br>
+
+	<table class="cp_table"><tr><th width="35%">Организация</th><th>Проводимые работы</th><tr>
+		
+	{% for dep in deps %}
+		<tr><td>{{dep.dep.fullname}}</td><td> 
+		<script>
+		$.getJSON("https://api.instagram.com/v1/users/{{dep.insta_id}}/media/recent?client_id=65fabc77f56a441995b2b2da6d049943&callback=?",function(data){
+		console.log(data);
+		for (var i = 0; i < 3; i++) {
+			var date = new Date(parseInt(data.data[i].created_time) * 1000);
+			if (data.data[i].caption==null) {
+			    var txt = 'Фото';} else {
+			    var txt = data.data[i].caption.text;}
+			if ((date.getDate()=={{day}}) && ((date.getMonth()+1)=={{month}})) {
+				$("#time{{dep.id}}").append(date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+", "+date.getHours()+":"+date.getMinutes()+" "+txt+"<br>");}}
+		});
+		</script>
+
+		<span id="time{{dep.id}}"></span></td></tr>	
+	{% endfor %}	
+
+	</table><br><br>
+
+</div>
+{% endblock %}

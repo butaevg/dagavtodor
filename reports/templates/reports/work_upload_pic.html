@@ -1,0 +1,45 @@
+{% extends "base_cp.html" %}
+
+{% load thumbnail %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2>Добавить изображения</h2><br><br>
+		
+    <form action="" method="post" enctype=multipart/form-data>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <h3><strong>{{form.pic.label}}</strong> 
+        {% for error in form.pic.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.pic}}   
+
+        <h3> </h3>
+        <input type=submit value='Загрузить'>
+    </form><br><br>
+
+    <h2><a href=reports/work/my/><<< Завершить отчет</a></h2>
+
+    <div id=grid>
+        <ul>
+        {% for pic in imgs %}
+            <li class=''>
+                <a class=fancybox data-fancybox-group=gallery title='' href={{ pic.pic }}>
+                    {% thumbnail pic.pic "150x100" as im %}
+        			<img src="{{ im.url }}">
+        			{% endthumbnail %}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+</div>	    
+
+{% endblock %}
