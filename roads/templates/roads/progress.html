@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}{{ road.name }}{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>{{ road.name }}</h3>
+
+		<table class=docs_table><tr>
+            <td><table class=docs_menu_table>
+            {% for row in roads %}
+                <tr><td><a href=roads/progress/{{row.id}}/>{{row.name}}</a></td></tr>
+            {% endfor %}
+        </table></td><td style='padding-left: 20px;'>
+
+            {% for report in road.reps.all %}
+                <br><br><p><b>{{report.name}}</b></p>
+
+                {% for img in report.pics.all %}
+                    <a href={{img.url}} class=fancybox data-fancybox-group=gallery title='{{obj.name}}: {{cat.name}}'>
+                        {% thumbnail img.url "150x100" as im %}
+                        <img src={{ im.url }} vspace=3 style='padding-right: 20px'>
+                        {% endthumbnail %}
+                    </a>
+                {% endfor %}
+
+            {% endfor %}
+               
+        </td></tr></table>
+
+	</div>
+
+{% endblock %}
