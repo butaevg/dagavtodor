@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^docs/', include('docs.urls')), 
     url(r'^orgs/', include('orgs.urls')), 
     url(r'^page/', include('pages.urls')), 
+    url(r'^reports/', include('reports.urls')), 
     url(r'^roads/', include('roads.urls')), 
     url(r'^pressa/', include('pressa.urls')),
     url(r'^user/', include('users.urls')), 

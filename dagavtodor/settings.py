@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'orgs', 
     'pages', 
     'pressa', 
+    'reports', 
     'roads', 
     'sorl.thumbnail', 
     'users', 
