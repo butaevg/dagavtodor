@@ -17,7 +17,12 @@ class MachinesCp(ListView):
 
 class MachineCreate(CreateView):
     model = Machine
-    fields = ['name', 'body', 'year_issue', 'pic_1', 'putdate', 'dep']
+    fields = ['name', 'body', 'year_issue', 'pic_1']
+    success_url = '/reports/machines/cp/'
+
+    def form_valid(self, form):
+        form.instance.dep = self.request.user
+        return super(MachineCreate, self).form_valid(form)
 
 # @login_required
 # def machine_create(request):

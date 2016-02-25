@@ -1,24 +1,35 @@
 {% extends "base_cp.html" %}
 
+{% load thumbnail %}
+
 {% block title %} {% endblock %}
 
 {% block content %}
 
 <div id="content_big">
 
-    <h2>Техника на списание</h2>
+    <h2>Техника на списание</h2> 
+    {% if user.cat.id == 3 %}
     <h2><a href="reports/machines/create/">Добавить технику</a></h2><br><br>
+    {% endif %}
+
+    <table class="cp_table">
+    <tr><th width="10%">Дата</th><th>Техника</th><th width="8%">Год</th><th width="15%">Фото</th><th width="25%">ДЭП</th><tr>
 
     {% for row in machine_list %}
-
-		<br><br><fieldset><legend><b>{{ row.putdate }}</b></legend>	
-		<b>Наименование: </b>{{row.name}}<br>
-		<b>Описание: </b>{{row.body}}<br>
-		<b>Год выпуска: </b>{{row.year_issue}}<br>
-		<b>Организация: </b>{{row.dep}}<br><br>
-		</fieldset><br>
-
+		<tr><td>{{ row.putdate|date:"d.m.Y" }}</td>
+		<td>{{row.name}}<br><i>{{row.body}}</i></td>
+		<td>{{row.year_issue}}</td>
+		<td><a class=fancybox data-fancybox-group=gallery href={{MEDIA_URL}}{{ row.pic_1 }}>
+            {% thumbnail row.pic_1 "150x100" as im %}
+        	<img src="{{ im.url }}">
+        	{% endthumbnail %}
+            </a>
+        </td>
+		<td>{{row.dep}}</td></tr>
 	{% endfor %} 
+
+	</table><br><br>
       
 </div>  
 {% endblock %}

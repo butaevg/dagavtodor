@@ -10,6 +10,18 @@ class Insta(models.Model):
         ordering = ['dep',]
 
 
+class Machine(models.Model):
+    name = models.CharField(max_length=512, verbose_name='Наименование техники') 
+    body = models.TextField(blank=True, verbose_name='Описание')
+    year_issue = models.CharField(max_length=5, verbose_name='Год выпуска')
+    pic_1 = models.ImageField(max_length=250, upload_to='machine', verbose_name='Фотография') 
+    putdate = models.DateTimeField(auto_now_add=True)
+    dep = models.ForeignKey(DUser, related_name='oao') 
+  
+    class Meta:
+        ordering = ['-putdate',]
+
+
 class Order(models.Model):
     name = models.CharField(max_length=512, verbose_name='Название')
     body = models.TextField(verbose_name='Описание')
@@ -102,15 +114,3 @@ class Work(models.Model):
 class WorkImg(models.Model):
     pic = models.ImageField(max_length=250, upload_to='work/%Y-%m-%d/')
     work = models.ForeignKey(Work, related_name="pics")
-
-
-class Machine(models.Model):
-    name = models.CharField(max_length=512, verbose_name='Наименование техники') 
-    body = models.TextField(blank=True, verbose_name='Описание')
-    year_issue = models.CharField(max_length=5, verbose_name='Год выпуска')
-    pic_1 = models.ImageField(max_length=250, upload_to='machine', verbose_name='Фотография') 
-    putdate = models.DateTimeField(auto_now_add=True)
-    dep = models.ForeignKey(DUser, related_name='oao') 
-  
-    class Meta:
-        ordering = ['-putdate',]
