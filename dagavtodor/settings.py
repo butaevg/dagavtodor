@@ -93,10 +93,21 @@ WSGI_APPLICATION = 'dagavtodor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dagavtodor',
+        'USER': 'german',
+        'PASSWORD': 'admin',
+        'HOST': '192.168.5.100',
+        'PORT': '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Internationalization
@@ -120,6 +131,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "upload")
-MEDIA_URL = '/'
+MEDIA_URL = '/upload/'
 
 THUMBNAIL_DEBUG = False
