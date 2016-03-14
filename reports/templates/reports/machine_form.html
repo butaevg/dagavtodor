@@ -38,6 +38,18 @@
         {% endfor %}</h3>
         {{form.pic_1}}
 
+        <h3><strong>{{form.pic_2.label}}</strong>
+        {% for error in form.pic_2.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.pic_2}}
+
+        <h3><strong>{{form.pic_3.label}}</strong>
+        {% for error in form.pic_3.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.pic_3}}
+
         <h3> </h3>
         <input type=submit value='Сохранить'>
     </form>

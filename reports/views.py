@@ -11,41 +11,27 @@ from django.views.generic.edit import CreateView
 from datetime import datetime
 from helpers.paginate import paginate
 
+#--- Техника на списание
 class MachinesCp(ListView):
     model = Machine
     template_name = 'reports/machine_cp.html'
 
 class MachineCreate(CreateView):
     model = Machine
-    fields = ['name', 'body', 'year_issue', 'pic_1']
+    fields = ['name', 'body', 'year_issue', 'pic_1', 'pic_2', 'pic_3']
     success_url = '/reports/machines/cp/'
 
     def form_valid(self, form):
         form.instance.dep = self.request.user
         return super(MachineCreate, self).form_valid(form)
 
-# @login_required
-# def machine_create(request):
-#     if request.method == 'POST':
-#         form = MachineForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             mach = Machine(                
-#                 name = form.cleaned_data['name'],
-#                 body = form.cleaned_data['body'],
-#                 year_issue = form.cleaned_data['year_issue'], 
-#                 pic_1 = form.cleaned_data['pic_1'], 
-#                 dep_id = request.user.id)
-#             mach.save()
-#             return HttpResponseRedirect('/machines/cp/')
-#     else:
-#         form = MachineForm()
-#     return render(request, 'reports/machine_create.html', {'form': form})
 
-
+#--- Инстаграм
 def instagram(request):
     deps = Insta.objects.all()
     day, month = (datetime.today().strftime('%d'), datetime.today().strftime('%m'))
     return render(request, 'reports/instagram.html', {'deps': deps, 'day': day, 'month': month})
+
 
 #--- Поручения
 @login_required
