@@ -1,0 +1,24 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+	<h2>Мои поручения</h2><br><br>
+
+	<table class="cp_table"><tr><th width="15%">Дата</th><th>Поручение</th><th width="15%">Срок</th>
+		
+		{% for order in orders %}
+			<tr>
+			  <td>{{ order.putdate }}</td> 
+			  <td><a href=reports/orders/exec/{{ order.id }}/>{{ order.name }}</a></td>
+			  <td>{{ order.expiredate }}</td> 
+			 </tr>
+		{% endfor %}	
+		
+	</table><br><br>
+
+</div>
+{% endblock %}

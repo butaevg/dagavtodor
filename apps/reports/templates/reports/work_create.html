@@ -1,0 +1,45 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2>Сведения о проводимых работах на объектах</h2><br>
+		
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <h3><strong>{{form.road.label}}</strong>        
+        {% for error in form.road.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.road}}
+
+        <h3><strong>{{form.works.label}}</strong>        
+        {% for error in form.works.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.works}}
+
+        <h3><strong>{{form.tech.label}}</strong>        
+        {% for error in form.tech.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.tech}}
+
+        <h3><strong>{{form.pers.label}}</strong>
+        {% for error in form.pers.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.pers}}
+
+        <h3> </h3>
+        <input type=submit value='Далее >>>'>
+    </form>
+
+</div>	    
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}{{ post.name }}{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3><a href="pressa/newsarchive/2016/">Новости</a> > {{ post.name }}</h3>
+
+		<p><a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{MEDIA_URL}}{{ post.mainpic }}>
+		{% thumbnail post.mainpic "150x100" crop="center" as main %}
+			<img src="{{ main.url }}" style="float: left; margin: 7px 15px 7px 0;">
+		{% endthumbnail %}</a>
+
+		<em>{{ post.putdate }} &nbsp;&nbsp;::&nbsp;&nbsp; {{ post.source }}
+		</em></p>
+		<p>{{ post.body|safe|linebreaks }}</p><br>
+
+		<div id="grid">
+			<ul>
+			{% for img in post.pics.all %}
+				<li class=''>
+					<a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{MEDIA_URL}}{{ img.pic }}>
+    					{% thumbnail img.pic "150x100" as im %}
+    					<img src={{ im.url }}>
+    					{% endthumbnail %}
+					</a>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2>Сведения о дорожных и погодных условиях и проводимой работе на автодорогах за {% now "SHORT_DATE_FORMAT" %}</h2><br>
+    		
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <h3><strong>{{form.sost.label}}</strong>        
+        {% for error in form.sost.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.sost}}
+
+        <h3><strong>{{form.temp.label}}</strong>        
+        {% for error in form.temp.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.temp}}
+
+        <h3><strong>{{form.pr_r.label}}</strong>        
+        {% for error in form.pr_r.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.pr_r}}
+
+        <h3><strong>{{form.pr_m.label}}</strong>        
+        {% for error in form.pr_m.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.pr_m}}
+
+        <h3><strong>{{form.works.label}}</strong>        
+        {% for error in form.works.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.works}}
+
+        <h3> </h3>
+        <input type="submit" value="Сохранить">
+    </form><br><br>
+
+<font size=2 color=red>Все поля обязательны для заполнения<br>В поле 'температура' обязательно указать знак '+' или '-'</font><br><br>
+
+</div>  
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}Обращения граждан{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Обращения граждан</h3>
+		
+		<p style="text-align: center; padding: 10px 0 20px 0;">
+		<a href="pressa/question/create/" >Написать новое обращение</a></p>
+			
+			{% for post in question_list %}
+				<p><i><b>{{ post.putdate }} :: {{ post.name }}</b></i>&nbsp;
+				{% if post.city %} ( <i><b>{{ post.city }}</b></i> )  {% endif %}
+				<br>{{ post.msg }}</p><p>
+				{% if post.img %} 
+				    <a class=fancybox data-fancybox-group=gallery href={{MEDIA_URL}}{{ post.img_1 }}>
+				        {% thumbnail post.img "150x100" as im %}
+    					<img src={{ im.url }}>
+    					{% endthumbnail %}
+				    </a>&nbsp;&nbsp; 
+				{% endif %}
+				</p>
+				{% if post.answer %}
+					<p><i><b>Ответ:</b></i>&nbsp;<br>{{ post.answer }}</p>
+				{% endif %}   
+				<br><br>
+			{% endfor %}
+			
+			<div style='margin-left: 30px; margin-bottom: 40px;'>
+				<span class="step-links">
+		        {% if page_obj.has_previous %}
+		            <a href="pressa/questions/?page={{ page_obj.previous_page_number }}"><< Пред.</a>
+		        {% endif %}
+
+		        <span class="current">
+		            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+		        </span>
+
+		        {% if page_obj.has_next %}
+		            <a href="pressa/questions/?page={{ page_obj.next_page_number }}">След. >></a>
+		        {% endif %}
+		    	</span>
+			</div>
+
+	</div>
+
+{% endblock %}

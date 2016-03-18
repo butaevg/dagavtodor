@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Обращения граждан{% endblock %}
+
+{% block content %}
+
+    <div id="page">
+        <h3>Обращения граждан</h3>
+            
+            <div id="faqform">
+                <form id="faq_valid" class="formular" enctype='multipart/form-data' action='' method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <strong>{{form.name.label}}</strong>        
+                {% for error in form.name.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}
+                {{form.name|attr:"size:60"|add_class:"validate[required,length[0,50]]"}}
+
+                <strong>{{form.city.label}}</strong>        
+                {% for error in form.city.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}
+                {{form.city|attr:"size:60"}}
+
+                <strong>{{form.email.label}}</strong>
+                <i>(ответ может быть выслан на него, на сайте не публикуется)</i>        
+                {% for error in form.email.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}
+                {{form.email|attr:"size:60"}}
+
+                <strong>{{form.msg.label}}</strong>       
+                {% for error in form.msg.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}
+                {{form.msg|attr:"rows:8"|attr:"cols:80"|add_class:"validate[required,length[20,300000]]"}}
+
+                <strong>{{form.img.label}}</strong> <i>(при наличии)</i> 
+                {% for error in form.img.errors %}
+                <span style="color: red;">[{{error}}]</span>
+                {% endfor %}
+                {{form.img}}
+                
+                <input type="submit" class="submit" value="Отправить">   
+
+                <p><font size=1px>* - звездочкой отмечены обязательные для заполнения поля</font></p>
+                </form><br><br>
+                
+                <p>
+                <b>Вниманию заявителей!</b><br><br>
+                Вопросы, связанные с федеральной автодорогой М29 ("Кавказ"), входят в компетенцию <a class=bibl href="http://www.fguozpskad.ru/" target=blank>УПРДОР "Северный-Кавказ"</a>.
+                </p>
+            </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base_cp.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2><a href=pressa/news/cp/><<< cписок новостей</a></h2><br><br>
+		
+    <form action="" method="post" enctype=multipart/form-data>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <h3><strong>{{form.name.label}}</strong>        
+        {% for error in form.name.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.name|attr:"size:101"}}
+
+        <h3><strong>{{form.source.label}}</strong>        
+        {% for error in form.source.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.source|attr:"size:40"|attr:"value:Пресс-служба Дагестанавтодора"}}
+
+        <h3><strong>{{form.body.label}}</strong>        
+        {% for error in form.body.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.body|attr:"rows:20"|attr:"cols:95"}}
+
+        <h3><strong>{{form.putdate.label}}</strong>
+        {% for error in form.putdate.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.putdate|attr:"class:datepicker"}}
+
+        <h3><strong>{{form.mainpic.label}}</strong> 
+        {% for error in form.mainpic.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.mainpic}}   
+
+        <h3> </h3>
+        <input type=submit value='Далее >>>'>
+    </form>
+
+</div>	    
+
+{% endblock %}
