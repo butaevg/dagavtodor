@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views 
-from .views import MachinesCp, MachineCreate
+from .views import MachinesCp, MachineCreate, MachinesWorkingCp, MachineWorkingCreate
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -30,4 +30,6 @@ urlpatterns = [
     #machines 
     url(r'^machines/cp/', login_required(MachinesCp.as_view())),  
     url(r'^machines/create/', login_required(MachineCreate.as_view())),
+    url(r'^machines_working/cp/', login_required(MachinesWorkingCp.as_view())), 
+    url(r'^machines_working/create/', login_required(MachineWorkingCreate.as_view())),
 ] 

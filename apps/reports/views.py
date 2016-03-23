@@ -1,7 +1,7 @@
 #coding: utf-8
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Insta, Order, OrderExec, Psd, Weather, WeatherCurrent, Work, WorkImg, Machine
+from .models import Insta, Order, OrderExec, Psd, Weather, WeatherCurrent, Work, WorkImg, Machine, MachineWorking
 from users.models import DUser
 from roads.models import Road
 from django.contrib.auth.decorators import login_required
@@ -18,13 +18,25 @@ class MachinesCp(ListView):
 
 class MachineCreate(CreateView):
     model = Machine
-    fields = ['name', 'body', 'year_issue', 'pic_1', 'pic_2', 'pic_3']
+    fields = ['name', 'body', 'year_issue', 'pic_1', 'pic_2', 'pic_3', 'pic_4', 'pic_5']
     success_url = '/reports/machines/cp/'
 
     def form_valid(self, form):
         form.instance.dep = self.request.user
         return super(MachineCreate, self).form_valid(form)
 
+class MachinesWorkingCp(ListView):
+    model = MachineWorking
+    template_name = 'reports/machine_working_cp.html'
+
+class MachineWorkingCreate(CreateView):
+    model = MachineWorking
+    fields = ['name', 'body', 'year_issue', 'pic_1', 'pic_2', 'pic_3', 'pic_4', 'pic_5']
+    success_url = '/reports/machines_working/cp/'
+
+    def form_valid(self, form):
+        form.instance.dep = self.request.user
+        return super(MachineWorkingCreate, self).form_valid(form)
 
 #--- Инстаграм
 def instagram(request):
