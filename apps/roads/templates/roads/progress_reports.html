@@ -7,10 +7,10 @@
 <div id="content_big">
 
     <h2>{{road.name}}</h2>
-    <a href=roads/report_add/{{road.id}}/>Добавить отчет</a><br>
+    <a href=roads/progress/report_add/{{road.id}}/>Добавить отчет</a><br>
 
     {% for report in road.reps.all %}
-        <br><br><a href=roads/upload_img/{{report.id}}/>{{report.name}}</a>
+        <br><br><a href=roads/progress/upload_img/{{report.id}}/>{{report.name}}</a>
     {% endfor %}
        
 </div>  
