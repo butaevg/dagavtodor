@@ -12,11 +12,13 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = 'раздел'
-        verbose_name_plural = 'Разделы'
+        verbose_name_plural = 'Разделы' 
 
+
+# u - http://stackoverflow.com/questions/2773324/django-admins-filter-horizontal-filter-vertical-not-working
 class UserCat(models.Model):
     name = models.CharField(max_length=100, verbose_name='Группа')
-    cats = models.ManyToManyField(Category, verbose_name='Разделы')
+    cats = models.ManyToManyField(Category, verbose_name=u'Разделы') 
 
     def __unicode__(self):
         return self.name
@@ -24,7 +26,7 @@ class UserCat(models.Model):
     class Meta:
         db_table = 'users_group'
         verbose_name = 'группу'
-        verbose_name_plural = 'Группы'
+        verbose_name_plural = 'Группы' 
 
 
 class DUserManager(BaseUserManager):
@@ -84,4 +86,4 @@ class DUser(AbstractBaseUser):
     class Meta:
     	db_table = 'users'
         verbose_name = 'пользователя'
-        verbose_name_plural = 'Пользователи'
+        verbose_name_plural = 'Пользователи' 
