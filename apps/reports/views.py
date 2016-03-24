@@ -1,7 +1,7 @@
 #coding: utf-8
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Insta, Order, OrderExec, Psd, Weather, WeatherCurrent, Work, WorkImg, Machine, MachineWorking
+from .models import Insta, Order, OrderExec, Psd, Weather, WeatherCurrent, Work, WorkImg, Machine
 from users.models import DUser
 from roads.models import Road
 from django.contrib.auth.decorators import login_required
@@ -13,7 +13,7 @@ from helpers.paginate import paginate
 
 #--- Техника на списание
 class MachinesCp(ListView):
-    model = Machine
+    queryset = Machine.objects.filter(working=0) 
     template_name = 'reports/machine_cp.html'
 
 class MachineCreate(CreateView):
@@ -22,15 +22,16 @@ class MachineCreate(CreateView):
     success_url = '/reports/machines/cp/'
 
     def form_valid(self, form):
-        form.instance.dep = self.request.user
+        form.instance.dep = self.request.user 
+        form.instance.working = 0 
         return super(MachineCreate, self).form_valid(form)
 
 class MachinesWorkingCp(ListView):
-    model = MachineWorking
+    queryset = Machine.objects.filter(working=1) 
     template_name = 'reports/machine_working_cp.html'
 
 class MachineWorkingCreate(CreateView):
-    model = MachineWorking
+    model = Machine
     fields = ['name', 'body', 'year_issue', 'pic_1', 'pic_2', 'pic_3', 'pic_4', 'pic_5']
     success_url = '/reports/machines_working/cp/'
 
