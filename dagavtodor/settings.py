@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles', 
     'contacts', 
     'docs', 
+    'django_summernote', 
     'orgs', 
     'pages', 
     'pressa', 

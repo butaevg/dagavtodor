@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^$', include('pages.urls')), 
     url(r'^admin/', include(admin.site.urls)), 
     url(r'^contacts/', include('contacts.urls')), 
+    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^docs/', include('docs.urls')), 
     url(r'^orgs/', include('orgs.urls')), 
     url(r'^page/', include('pages.urls')), 
