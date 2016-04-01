@@ -1,6 +1,6 @@
 #coding: utf-8
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import Insta, Order, OrderExec, Psd, Weather, WeatherCurrent, Work, WorkImg, Machine
 from users.models import DUser
 from roads.models import Road
@@ -38,6 +38,13 @@ class MachineWorkingCreate(CreateView):
     def form_valid(self, form):
         form.instance.dep = self.request.user
         return super(MachineWorkingCreate, self).form_valid(form)
+
+@login_required
+def machine_delete(request, id):
+    machine = Machine.objects.get(pk=id)
+    machine.delete()
+    return HttpResponse('OK')
+
 
 #--- Инстаграм
 def instagram(request):

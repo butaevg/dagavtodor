@@ -32,4 +32,5 @@ urlpatterns = [
     url(r'^machines/create/', login_required(MachineCreate.as_view())),
     url(r'^machines_working/cp/', login_required(MachinesWorkingCp.as_view())), 
     url(r'^machines_working/create/', login_required(MachineWorkingCreate.as_view())),
+    url(r'^machines_working/machine_delete/(?P<id>[0-9]+)/$', views.machine_delete),
 ] 
