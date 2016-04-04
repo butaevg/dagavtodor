@@ -7,6 +7,9 @@ from .views import (PostDetail, NewsYearArchive, PostCp, PostCreate,
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
+    #adverts
+    url(r'^adverts/$', AdvertList.as_view()), 
+    url(r'^advert/(?P<pk>[0-9]+)/$', AdvertDetail.as_view()), 
 	#news
     url(r'^post/(?P<pk>[0-9]+)/$', PostDetail.as_view()), 
     url(r'^newsarchive/(?P<year>[0-9]{4})/$', NewsYearArchive.as_view()), 
@@ -15,9 +18,6 @@ urlpatterns = [
     url(r'^post/edit/(?P<pk>[0-9]+)/$', login_required(PostEdit.as_view())),
     url(r'^post/upload_pic/(?P<id>[0-9]+)/$', views.upload_pic),
     url(r'^post/delete/(?P<pk>[0-9]+)/$', login_required(PostDelete.as_view())),
-    #adverts
-    url(r'^adverts/$', AdvertList.as_view()), 
-    url(r'^advert/(?P<pk>[0-9]+)/$', AdvertDetail.as_view()), 
     #articles
     url(r'^articles/$', ArticleList.as_view()), 
     url(r'^article/(?P<pk>[0-9]+)/$', ArticleDetail.as_view()), 
