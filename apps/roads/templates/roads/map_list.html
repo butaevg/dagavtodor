@@ -59,48 +59,10 @@
 		</span></p></td> 
 		<td align="center" valign="top"><p>&nbsp;</p>
 		<p align="left"><span>
-		<a href="roads/maps/36/" class="hr"> Агульский (36) </a><br />
-		<a href="roads/maps/29/" class="hr">Акушинский (29) </a><br />
-		<a href="roads/maps/17/" class="hr">Ахвахский (17) </a><br />
-		<a href="roads/maps/41/" class="hr">Ахтынский   (41)</a><br />
-		<a href="roads/maps/4/" class="hr">Бабаюртовский (4) </a><br />
-		<a href="roads/maps/12/" class="hr">Ботлихский (12) </a><br />
-		<a href="roads/maps/11/" class="hr">Буйнакский (11) </a><br />
-		<a href="roads/maps/19/" class="hr">Гергебильский (19) </a><br />
-		<a href="roads/maps/13/" class="hr">Гумбетовский (13) </a><br />
-		<a href="roads/maps/24/" class="hr">Гунибский (24) </a><br />
-		<a href="roads/maps/30/" class="hr">Дахадаевский   (30) </a><br />
-		<a href="roads/maps/32/" class="hr">Дербентский (32) </a><br />
-		<a href="roads/maps/42/" class="hr">Докузпаринский (42)</a> <br />
-		<a href="roads/maps/10/" class="hr">Казбековский (10)</a> <br />
-		<a href="roads/maps/31/" class="hr">Кайтагский (31)</a> <br />
-		<a href="roads/maps/15/" class="hr">Карабудахкентский   (15)</a> <br />
-		<a href="roads/maps/22/" class="hr">Каякентский (22)</a> <br />
-		<a href="roads/maps/6/" class="hr">Кизилюртовский (6)</a> <br />
-		<a href="roads/maps/3/" class="hr">Кизлярский (3)</a> <br />
-		<a href="roads/maps/33/" class="hr">Кулинский (33)</a> <br />
-		<a href="roads/maps/7/" class="hr">Кумторкалинский   (7)</a> <br />
-		<a href="roads/maps/38/" class="hr">Курахский (38)</a> <br />
-		<a href="roads/maps/28/" class="hr">Лакский   (28)</a> <br />
-		<a href="roads/maps/20/" class="hr">Левашинский (20)</a> <br />
-		<a href="roads/maps/40/" class="hr">Магарамкентский (40)</a> <br />
-		<a href="roads/maps/9/" class="hr">Новолакский (9)</a> <br />
-		<a href="roads/maps/1/" class="hr">Ногайский (1)</a> <br />
-		<a href="roads/maps/35/" class="hr">Рутульский (35)</a> <br />
-		<a href="roads/maps/21/" class="hr">Сергокалинский (21)</a> <br />
-		<a href="roads/maps/39/" class="hr">Сулейман-Стальский (39)</a><br />
-		<a href="roads/maps/34/" class="hr">Табасаранский   (34)</a> <br />
-		<a href="roads/maps/2/" class="hr">Тарумовский (2)</a> <br />
-		<a href="roads/maps/26/" class="hr">Тляратинский (26)</a> <br />
-		<a href="roads/maps/14/" class="hr">Унцукульский (14)</a> <br />
-		<a href="roads/maps/5/" class="hr">Хасавюртовский (5)</a> <br />
-		<a href="roads/maps/37/" class="hr">Хивский (37)</a> <br />
-		<a href="roads/maps/18/" class="hr">Хунзахский (18)</a> <br />
-		<a href="roads/maps/16/" class="hr">Цумадинский   (16)</a> <br />
-		<a href="roads/maps/25/" class="hr">Цунтинский (25)</a> <br />
-		<a href="roads/maps/27/" class="hr">Чародинский (27)</a><br />
-		<a href="roads/maps/23/" class="hr">Шамильский (23)</a> <br />
-		<a href="roads/maps/8/" class="hr">Территория, подчиненная администрации г. Махачкалы (8)</a> </span> </td></tr>
+		{% for rayon in map_list|dictsort:"rayon" %}
+		<a href="roads/maps/{{rayon.id}}/" class="hr"> {{rayon.rayon}} ({{rayon.id}}) </a><br />
+		{% endfor %}
+		</span> </td></tr>
 		</table>
 		
 	</div>
