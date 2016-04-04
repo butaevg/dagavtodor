@@ -1,19 +1,22 @@
 from django.conf.urls import url
-from . import views
+from . import views 
+from .views import (MapList, MapDetail, RoadList, RoadDetail, RoadProgressCp, 
+    RoadProgressCreate, RoadProgressImg, CamIpList, CamIpDetail) 
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-	url(r'^$', views.objects), 
-	#progress
-    url(r'^progress/(?P<id>[0-9]+)/$', views.progress), 
-    url(r'^progress/cp/', views.progress_cp), 
-    url(r'^progress/reports/(?P<id>[0-9]+)/$', views.progress_reports), 
-    url(r'^progress/report_add/(?P<id>[0-9]+)/$', views.progress_report_add), 
-    url(r'^progress/upload_img/(?P<id>[0-9]+)/$', views.progress_upload_img), 
     #maps
-    url(r'^maps/$', views.maps_list), 
-    url(r'^maps/(?P<id>[0-9]+)/$', views.maps_detail), 
+    url(r'^maps/$', MapList.as_view()), 
+    url(r'^maps/(?P<pk>[0-9]+)/$', MapDetail.as_view()), 
+    #roads
+	url(r'^$', RoadList.as_view()), 
+    url(r'^progress/(?P<pk>[0-9]+)/$', RoadDetail.as_view()), 
+    url(r'^progress/cp/', login_required(RoadProgressCp.as_view())), 
+    url(r'^progress/reports/(?P<pk>[0-9]+)/$', login_required(RoadDetail.as_view(template_name = 'roads/road_progress_reports.html'))),
+    url(r'^progress/report_add/(?P<pk>[0-9]+)/$', login_required(RoadProgressCreate.as_view(template_name = 'roads/road_progress_create.html'))), 
+    url(r'^progress/upload_img/(?P<pk>[0-9]+)/$', login_required(RoadProgressImg.as_view(template_name = 'roads/road_progress_upload_img.html'))), 
     #camera
-    url(r'^webcam/(?P<cat>[\w-]+)/$', views.webcam_list), 
-    url(r'^webcam/ip/(?P<id>[0-9]+)/$', views.webcam_ip), 
-    #url(r'^webcam/3g/(?P<id>[0-9]+)/$', views.webcam_3g), 
+    url(r'^webcam/ip/$', CamIpList.as_view()), 
+    url(r'^webcam/ip/(?P<pk>[0-9]+)/$', CamIpDetail.as_view()), 
+    url(r'^webcam/3g/$', views.webcam_3g), 
 ] 

@@ -2,77 +2,64 @@
 import os
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Road, Report, ReportImg, Map, Cam3g, CamIp
+from .models import Map, Road, Report, ReportImg, Cam3g, CamIp
 from django.contrib.auth.decorators import login_required
-from .forms import ReportForm, ReportImgForm
-
-#--- Важнейшие объекты
-def objects(request):
-    roads = Road.objects.filter(onsite=1).filter(complete=0)
-    return render(request, 'roads/objects.html', {'roads': roads})
-
-#--- Ход работ
-def progress(request, id):
-    roads = Road.objects.filter(onsite=1).filter(complete=0)
-    road = Road.objects.get(pk=id)
-    return render(request, 'roads/progress.html', {'roads': roads, 'road': road})
-
-@login_required
-def progress_cp(request):
-    roads = Road.objects.filter(onsite=1).filter(complete=0)
-    return render(request, 'roads/progress_cp.html', {'roads': roads})
-
-@login_required
-def progress_reports(request, id):
-    road = Road.objects.get(pk=id)
-    return render(request, 'roads/progress_reports.html', {'road': road})
-
-@login_required
-def progress_report_add(request, id):
-    if request.method == 'POST':
-        form = ReportForm(request.POST)
-        if form.is_valid():
-            report = Report(
-                name = form.cleaned_data['name'],
-                road_id = id)
-            report.save()
-            return HttpResponseRedirect('/roads/progress/reports/%s/' % id)
-    else:
-        form = ReportForm()
-    return render(request, 'roads/progress_report_create.html', {'form': form, 'id': id})
-
-@login_required
-def progress_upload_img(request, id):
-    if request.method == 'POST':
-        form = ReportImgForm(request.POST, request.FILES)
-        if form.is_valid():
-            img = ReportImg(
-                url = form.cleaned_data['pic'],
-                report_id = id)
-            img.save()
-            return HttpResponseRedirect('/roads/progress/upload_img/%s/' % id)
-    form = ReportImgForm()
-    report = Report.objects.get(pk=id)
-    return render(request, 'roads/progress_upload_img.html', {'form': form, 'report': report})
+from .forms import ReportImgForm
+from django.views.generic import ListView, DetailView 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 #--- Карты районов
-def maps_list(request):
-    return render(request, 'roads/maps_list.html')
+class MapList(ListView):
+    model = Map
 
-def maps_detail(request, id):
-    rayon = Map.objects.get(pk=id)
-    return render(request, 'roads/maps_detail.html', {'rayon': rayon})
+class MapDetail(DetailView):
+    model = Map
+
+#--- Важнейшие объекты (ход работ)
+class RoadList(ListView):
+    queryset = Road.objects.filter(onsite=1).filter(complete=0)
+
+class RoadDetail(DetailView):
+    model = Road
+
+    def get_context_data(self, **kwargs):
+        context = super(RoadDetail, self).get_context_data(**kwargs)
+        context['roads'] = Road.objects.filter(onsite=1).filter(complete=0)
+        return context
+
+class RoadProgressCp(ListView):
+    queryset = Road.objects.filter(onsite=1).filter(complete=0) 
+    context_object_name = 'roads'
+    template_name = 'roads/road_progress_cp.html' 
+
+
+class RoadProgressCreate(CreateView):
+    model = Report 
+    fields = ['name']
+
+    def form_valid(self, form):
+        form.instance.road_id = self.kwargs['pk']
+        return super(RoadProgressCreate, self).form_valid(form)
+
+class RoadProgressImg(CreateView):
+    model = ReportImg 
+    fields = ['url']
+
+    def get_context_data(self, **kwargs):
+        context = super(RoadProgressImg, self).get_context_data(**kwargs)
+        context['report'] = Report.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def form_valid(self, form):
+        form.instance.report_id = self.kwargs['pk']
+        return super(RoadProgressImg, self).form_valid(form)
 
 #--- Камеры
-def webcam_list(request, cat):
-    if cat == 'ip':
-        cams = CamIp.objects.filter(hide=0)
-        return render(request, 'roads/webcam_ip_list.html', {'cams': cams})
-    if cat == '3g':
-        #cams = Cam3g.objects.filter(hide=0)
-        #return render(request, 'roads/webcam_3g_list.html', {'cams': cams})
-        return HttpResponseRedirect('http://media.dagavtodor.ru/videomonitoring/gsm/')
+def webcam_3g(request):
+    return HttpResponseRedirect('http://media.dagavtodor.ru/videomonitoring/gsm/')
 
-def webcam_ip(request, id):
-    cam = CamIp.objects.get(pk=id)
-    return render(request, 'roads/webcam_ip_detail.html', {'cam': cam})    
+class CamIpList(ListView):
+    model = CamIp
+
+class CamIpDetail(DetailView):
+    model = CamIp
