@@ -1,9 +1,9 @@
 from django.conf.urls import url
 from . import views
 from .views import (PostDetail, NewsYearArchive, PostCp, PostCreate, 
-    PostEdit, AdvertList, AdvertDetail, ArticleList, 
+    PostEdit, PostDelete, AdvertList, AdvertDetail, ArticleList, 
     ArticleDetail, ArticleCp, ArticleCreate, ArticleEdit, ArticleDelete, 
-    QuestionList, QuestionCreate, QuestionCp, QuestionEdit, Gallery)
+    QuestionList, QuestionCreate, QuestionCp, QuestionEdit, QuestionDelete, Gallery)
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^post/create/', login_required(PostCreate.as_view())),
     url(r'^post/edit/(?P<pk>[0-9]+)/$', login_required(PostEdit.as_view())),
     url(r'^post/upload_pic/(?P<id>[0-9]+)/$', views.upload_pic),
-    url(r'^post/delete/(?P<id>[0-9]+)/$', views.post_delete),
+    url(r'^post/delete/(?P<pk>[0-9]+)/$', login_required(PostDelete.as_view())),
     #articles
     url(r'^articles/$', ArticleList.as_view()), 
     url(r'^article/(?P<pk>[0-9]+)/$', ArticleDetail.as_view()), 
@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^questions/cp/', login_required(QuestionCp.as_view())),     
     url(r'^question/edit/(?P<pk>[0-9]+)/$', login_required(QuestionEdit.as_view())), 
     url(r'^question/showhide/(?P<id>[0-9]+)/(?P<hide>[0-9]+)/$', views.question_showhide),
-    url(r'^question/delete/(?P<id>[0-9]+)/$', views.question_delete), 
+    url(r'^question/delete/(?P<pk>[0-9]+)/$', login_required(QuestionDelete.as_view())), 
     #photo
     url(r'^photo/$', Gallery.as_view()), 
 ] 

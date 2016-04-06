@@ -93,15 +93,11 @@ class PostEdit(UpdateView):
     model = Post
     fields = ['name', 'source', 'body', 'mainpic', 'putdate']
 
-# class PostDelete(DeleteView):
-#     model = Post
-#     success_url = '/pressa/news/cp/'
+class PostDelete(DeleteView):
+    model = Post
 
-@login_required
-def post_delete(request, id):
-    post = Post.objects.get(pk=id)
-    post.delete()
-    return HttpResponse('OK')
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("OK")
 
 
 #--- Обращения граждан
@@ -136,12 +132,8 @@ def question_showhide(request, id, hide):
     post.save(update_fields=['hide',])
     return HttpResponseRedirect('/pressa/questions/cp/')
 
-# class QuestionDelete(DeleteView):
-#     model = Question
-#     success_url = '/pressa/questions/cp/'
+class QuestionDelete(DeleteView):
+    model = Question
 
-@login_required
-def question_delete(request, id):
-    question = Question.objects.get(pk=id)
-    question.delete()
-    return HttpResponse('OK')
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("OK")
