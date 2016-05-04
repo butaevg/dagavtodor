@@ -3,7 +3,7 @@ from . import views
 from .views import (PostDetail, NewsYearArchive, PostCp, PostCreate, 
     PostEdit, PostDelete, AdvertList, AdvertDetail, ArticleList, 
     ArticleDetail, ArticleCp, ArticleCreate, ArticleEdit, ArticleDelete, 
-    QuestionList, QuestionCreate, QuestionCp, QuestionEdit, QuestionDelete, Gallery)
+    QuestionList, QuestionCreate, QuestionSuccess, QuestionCp, QuestionEdit, QuestionDelete, Gallery)
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
     #faq
     url(r'^questions/$', QuestionList.as_view()), 
     url(r'^question/create/', QuestionCreate.as_view()),
-    url(r'^question/success/', views.question_success), 
+    url(r'^question/success/', QuestionSuccess.as_view()), 
     url(r'^questions/cp/', login_required(QuestionCp.as_view())),     
     url(r'^question/edit/(?P<pk>[0-9]+)/$', login_required(QuestionEdit.as_view())), 
     url(r'^question/showhide/(?P<id>[0-9]+)/(?P<hide>[0-9]+)/$', views.question_showhide),

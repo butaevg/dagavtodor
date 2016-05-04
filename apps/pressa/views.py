@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from .models import Advert, Article, PhotoCat, Post, PostImg, Question
 from django.contrib.auth.decorators import login_required
 from .forms import NewsImgForm
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.dates import YearArchiveView
 from datetime import datetime
@@ -110,8 +110,8 @@ class QuestionCreate(CreateView):
     fields = ['name', 'city', 'email', 'msg', 'img']
     success_url = '/pressa/question/success/'
 
-def question_success(request):
-    return render(request, 'pressa/question_success.html')
+class QuestionSuccess(TemplateView):
+    template_name = 'pressa/question_success.html'
 
 class QuestionCp(ListView):
     model = Question
