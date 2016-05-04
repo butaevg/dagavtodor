@@ -11,10 +11,10 @@ urlpatterns = [
     #roads
 	url(r'^$', RoadList.as_view()), 
     url(r'^progress/(?P<pk>[0-9]+)/$', RoadDetail.as_view()), 
-    url(r'^progress/cp/', login_required(RoadProgressCp.as_view())), 
+    url(r'^progress/cp/', RoadProgressCp.as_view()), 
     url(r'^progress/reports/(?P<pk>[0-9]+)/$', login_required(RoadDetail.as_view(template_name = 'roads/road_progress_reports.html'))),
-    url(r'^progress/report_add/(?P<pk>[0-9]+)/$', login_required(RoadProgressCreate.as_view(template_name = 'roads/road_progress_create.html'))), 
-    url(r'^progress/upload_img/(?P<pk>[0-9]+)/$', login_required(RoadProgressImg.as_view(template_name = 'roads/road_progress_upload_img.html'))), 
+    url(r'^progress/report_add/(?P<pk>[0-9]+)/$', RoadProgressCreate.as_view(template_name = 'roads/road_progress_create.html')), 
+    url(r'^progress/upload_img/(?P<pk>[0-9]+)/$', RoadProgressImg.as_view(template_name = 'roads/road_progress_upload_img.html')), 
     #camera
     url(r'^webcam/ip/$', CamIpList.as_view()), 
     url(r'^webcam/ip/(?P<pk>[0-9]+)/$', CamIpDetail.as_view()), 

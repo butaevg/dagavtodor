@@ -3,7 +3,8 @@ import os
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import Map, Road, Report, ReportImg, Cam3g, CamIp
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required 
+from dagavtodor.mixins import LoginRequiredMixin
 from .forms import ReportImgForm
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -27,13 +28,13 @@ class RoadDetail(DetailView):
         context['roads'] = Road.objects.filter(onsite=1).filter(complete=0)
         return context
 
-class RoadProgressCp(ListView):
+class RoadProgressCp(LoginRequiredMixin, ListView):
     queryset = Road.objects.filter(onsite=1).filter(complete=0) 
     context_object_name = 'roads'
     template_name = 'roads/road_progress_cp.html' 
 
 
-class RoadProgressCreate(CreateView):
+class RoadProgressCreate(LoginRequiredMixin, CreateView):
     model = Report 
     fields = ['name']
 
@@ -41,7 +42,7 @@ class RoadProgressCreate(CreateView):
         form.instance.road_id = self.kwargs['pk']
         return super(RoadProgressCreate, self).form_valid(form)
 
-class RoadProgressImg(CreateView):
+class RoadProgressImg(LoginRequiredMixin, CreateView):
     model = ReportImg 
     fields = ['url']
 
