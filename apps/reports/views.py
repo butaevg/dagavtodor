@@ -4,9 +4,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from .models import Insta, Order, OrderExec, Psd, Weather, WeatherCurrent, Work, WorkImg, Machine
 from users.models import DUser
 from roads.models import Road
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required 
+from dagavtodor.mixins import LoginRequiredMixin 
 from .forms import OrderExecForm, PsdExeForm, WeatherDateForm, WeatherForm, WorkForm, WorkImgForm
-from django.views.generic import ListView, DetailView 
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView
 from datetime import datetime
 from helpers.paginate import paginate
@@ -137,13 +138,10 @@ def psd_exec(request, id):
             'getsum': road.getsum})
     return render(request, 'reports/psd_exec.html', {'form': form, 'road': road})
 
-@login_required
-def psd(request):
-    pr1 = Psd.objects.filter(contractor=121)
-    pr2 = Psd.objects.filter(contractor=123)
-    pr3 = Psd.objects.filter(contractor=124)
-    pr4 = Psd.objects.filter(contractor=125)
-    return render(request, 'reports/psd.html', {'pr1': pr1, 'pr2': pr2, 'pr3': pr3, 'pr4': pr4})
+class PsdCp(LoginRequiredMixin, ListView):
+    queryset = DUser.objects.filter(cat=7)
+    context_object_name = 'contractors'
+    template_name = 'reports/psd_cp.html' 
 
 
 #--- Погодные условия
@@ -218,11 +216,14 @@ def weather_show(request, id):
 
 
 #--- Отчеты по объектам
-@login_required
-def my_work(request):
-    work_list = Work.objects.filter(cont=request.user.id)
-    works = paginate(request, work_list, 4)
-    return render(request, 'reports/work_my.html', {'works': works})
+class WorkMy(LoginRequiredMixin, TemplateView):
+    template_name = 'reports/work_my.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkMy, self).get_context_data(**kwargs) 
+        context['work_list'] = Work.objects.filter(cont=self.request.user.id)
+        context['works'] = paginate(self.request, context['work_list'], 4)
+        return context
 
 @login_required
 def work_upload_pic(request, id):
@@ -255,19 +256,24 @@ def work_create(request):
         form = WorkForm(user_id=request.user.id)
     return render(request, 'reports/work_create.html', {'form': form})
 
-@login_required
-def work_cp(request):
-    stroy = Road.objects.filter(cat='str', report=1)
-    rec = Road.objects.filter(cat='rec', report=1)
-    rem = Road.objects.filter(cat='rem', report=1)
-    return render(request, 'reports/work_cp.html', {'stroy': stroy, 'rec': rec, 'rem': rem})
 
-@login_required
-def work_show(request, id):
-    stroy = Road.objects.filter(cat='str', report=1)
-    rec = Road.objects.filter(cat='rec', report=1)
-    rem = Road.objects.filter(cat='rem', report=1)
-    road = Road.objects.get(pk=id)
-    work_list = Work.objects.order_by('-putdate').filter(road=id)
-    works = paginate(request, work_list, 4)
-    return render(request, 'reports/work_show.html', {'stroy': stroy, 'rec': rec, 'rem': rem, 'road': road, 'works': works})
+class RoadsMixin(object):
+    def get_context_data(self, **kwargs):
+        context = super(RoadsMixin, self).get_context_data(**kwargs)
+        context['stroy'] = Road.objects.filter(cat='str', report=1) 
+        context['rec'] = Road.objects.filter(cat='rec', report=1)
+        context['rem'] = Road.objects.filter(cat='rem', report=1)
+        return context
+
+class WorkCp(LoginRequiredMixin, RoadsMixin, TemplateView):
+    template_name = 'reports/work_cp.html'
+
+class WorkShow(LoginRequiredMixin, RoadsMixin, DetailView):
+    model = Road
+    template_name = 'reports/work_show.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkShow, self).get_context_data(**kwargs)
+        context['work_list'] = Work.objects.order_by('-putdate').filter(road=self.kwargs['pk'])
+        context['works'] = paginate(self.request, context['work_list'], 4)
+        return context

@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from . import views 
-from .views import MachinesCp, MachineCreate, MachinesWorkingCp, MachineWorkingCreate
-from django.contrib.auth.decorators import login_required
+from .views import (MachinesCp, MachineCreate, MachinesWorkingCp, MachineWorkingCreate, 
+    PsdCp, WorkCp, WorkShow, WorkMy)
+from django.contrib.auth.decorators import login_required 
 
 urlpatterns = [
 	#orders
@@ -12,7 +13,7 @@ urlpatterns = [
     #psd
     url(r'^psd/my/', views.my_psd), 
     url(r'^psd/exec/(?P<id>[0-9]+)/$', views.psd_exec), 
-    url(r'^psd/', views.psd), 
+    url(r'^psd/', PsdCp.as_view()), 
     #weather
     url(r'^weather/$', views.weather),     
     url(r'^weather/my/', views.my_weather), 
@@ -20,9 +21,9 @@ urlpatterns = [
     url(r'^weather/cp/', views.weather_cp), 
     url(r'^weather/(?P<id>[0-9]+)/$', views.weather_show), 
     #work
-    url(r'^work/cp/', views.work_cp),
-    url(r'^work/(?P<id>[0-9]+)/$', views.work_show),      
-    url(r'^work/my/', views.my_work), 
+    url(r'^work/cp/', WorkCp.as_view()),
+    url(r'^work/(?P<pk>[0-9]+)/$', WorkShow.as_view()),      
+    url(r'^work/my/', WorkMy.as_view()), 
     url(r'^work/create/', views.work_create),
     url(r'^work/upload_pic/(?P<id>[0-9]+)/$', views.work_upload_pic),
     #instagram

@@ -52,17 +52,18 @@ class OrderExec(models.Model):
 
 
 
-CONT = (
-    ('121', 'ИПТС Транспроект'),
-    ('123', 'ООО «Экодор»'),
-    ('124', 'ЗАО «Дагдорпроект»'), 
-    ('125', 'ООО «Дорстройпроект»'),
-)
+# CONT = (
+#     ('121', 'ИПТС Транспроект'),
+#     ('123', 'ООО «Экодор»'),
+#     ('124', 'ЗАО «Дагдорпроект»'), 
+#     ('125', 'ООО «Дорстройпроект»'),
+# )
 
 class Psd(models.Model):
     name = models.CharField(max_length=512, verbose_name='Объект')
     price = models.FloatField(verbose_name='Стоимость')
-    contractor = models.CharField(max_length=4, choices=CONT, verbose_name='Проектировщик')
+    #contractor = models.CharField(max_length=4, choices=CONT, verbose_name='Проектировщик')
+    contractor = models.ForeignKey(DUser, related_name='proj', verbose_name='Проектировщик')
     exe = models.FloatField(blank=True, verbose_name='Выполнение')
     exe_perc = models.IntegerField(blank=True, default=0, verbose_name='Выполнение, %')
     getsum = models.FloatField(blank=True, verbose_name='Получено')
