@@ -7,23 +7,33 @@
 {% block content %}
 <!--<div id="content">-->
 
-		<div id="news">
-			<ul>
-				{% for post in posts %}
-					<li><a href="pressa/post/{{ post.id }}/"/><h3>{{ post.name }}</h3></a><span>{{ post.putdate }}</span><i></i></li>				
-				{% endfor %}								
-			</ul>
-			{% for post in posts %}
-				<div>
-				{% thumbnail post.mainpic "397x265" crop="center" as im %}
-					<img src="{{ im.url }}">
-				{% endthumbnail %}
-				</div>
-			{% endfor %}				
+        <div id="news_block">
+            <div class="title_blue">
+				<span class="title_txt">Новости</span> 
+				<div class="all_link"><a href="pressa/newsarchive/2016/">Все новости</a></div>
+			</div>
+
+    		<div id="news">
+    			<ul>
+    				{% for post in posts %}
+    					<li><a href="pressa/post/{{ post.id }}/"/><h3>{{ post.name }}</h3></a><span>{{ post.putdate }}</span><i></i></li>				
+    				{% endfor %}								
+    			</ul>
+    			{% for post in posts %}
+    				<div>
+    				{% thumbnail post.mainpic "397x265" crop="center" as im %}
+    					<img src="{{ im.url }}">
+    				{% endthumbnail %}
+    				</div>
+    			{% endfor %}				
+    		</div>
+		
 		</div>
 		
 		<div id="sidebar">
-			<h3>{% if user.is_authenticated %} {{ user.name }} {% else %} Авторизация {% endif %}</h3>
+		    <div class="title_blue">
+				<span class="title_txt">{% if user.is_authenticated %} {{ user.name }} {% else %} Авторизация {% endif %}</span> 
+			</div>
 			<ul>
 				<div id="cam">
 					{% if user.is_authenticated %}
@@ -40,7 +50,7 @@
 				</div>
 				<div id="cam"><a href="roads/webcam/ip/"><img src='static/img/sidebar/videomon.jpg'></a></div>
 				<div id="cam"><a href="reports/weather/"><img src='static/img/sidebar/pogoda.png'></a></div>
-				<div id="cam"><a href="roads/progress/105/"><img src='static/img/sidebar/xod.png'></a></div>
+				<div id="cam"><a href="roads/progress/110/"><img src='static/img/sidebar/xod.png'></a></div>
 				<div id="cam"><a href="page/obrasheniya-grazhdan"><img src='static/img/sidebar/faq.png'></a></div>
 				<div id="cam"><a href="pressa/photo/"><img src='static/img/sidebar/photo.png'></a></div>
 				<div id="cam"><a href="page/protivodejstvie-korrupcii/"><img src='static/img/sidebar/anticor.png'></a></div>
@@ -49,28 +59,35 @@
 
 		<div id="panel">
 			<div id="panel_info">
-				<h3>ХОД РАБОТ НА ОБЪЕКТАХ</h3>
+				<div class="title_blue">
+					<span class="title_txt">Ход работ</span> 
+					<div class="all_link"><a href="roads/progress/105/">Все объекты</a></div>
+				</div>
 				<ul>
-					<li><a href="roads/progress/105/">Реконструкция а/д Каспийск-Аэропорт</a></li>
-					<li><a href="roads/progress/110/">Строительство а/д Гунибское шоссе-Вантляшевский перевал</a></li>
-					<li><a href="roads/progress/73/">Реконструкция а/д Манас – Сергокала – Первомайское</a></li>
-					<li><a href=roads/progress/105/>все объекты >>></a></li>
+					<li><a href="roads/progress/105/">Реконструкция автомобильной дороги Каспийск-Аэропорт</a></li>
+					<li><a href="roads/progress/110/">Строительство автомобильной дороги Гунибское шоссе-Вантляшевский перевал</a></li>
+					<li><a href="roads/progress/73/">Реконструкция автомобильной дороги Манас – Сергокала – Первомайское</a></li>
 				</ul>
 			</div>
 			
 			<div id="panel_docs">
-				<h3>ДОКУМЕНТЫ</h3>
+				<div class="title_blue">
+					<span class="title_txt">Документы</span> 
+					<div class="all_link"><a href="docs/">Все документы</a></div>
+				</div>
 				<ul>
 				    <li><a href=upload/docs/График_представления_отчетов_за_2015_год_8oidqbM.pdf target="blank">График представления бухгалтерской отчетности ДЭП за 2015 год</a></li>
 					<li><a href=upload/docs/Постановление_Правительства_РД_от_26.01.2016_г.__11_Вопросы_Агентства_по_дорожному_хозяйству_РД.pdf target="blank">Постановление Правительства РД от 26.01.2016 г. № 11 Вопросы Агентства по дорожному хозяйству Республики Дагестан</a></li>
-					<li><a href=docs/>все документы >>></a></li>	
+					<li><a href=upload/docs/О_комисссии_по_проведению_конкурса_на_замещение_вакантной_должности_государственной_гражданской_службы.pdf target="blank">Приказ N23 от 11.03.2015 О комисссии по проведению конкурса на замещение вакантной должности государственной...</a></li>
 				</ul>
 			</div>
 		</div>
 
 		<div id="panel">
 			<div id="panel_info">
-				<h3>ИНТЕРНЕТ-РЕСУРСЫ</h3>
+				<div class="title_blue">
+					<span class="title_txt">Интернет-ресурсы</span> 
+				</div>
 				<ul>
 					<div class="bn"><a href="http://mintrans.ru/" target="blank"><img src='http://dagavtodor.ru/static/img/banners/mintransrf.png' title="Министерство транспорта Pоссийской Федерации"></a></div>
 					<div class="bn"><a href="http://rosavtodor.ru/" target="blank"><img src='http://dagavtodor.ru/static/img/banners/rosavtodor.png' title="Федеральное дорожное агентство (Росавтодор)"></a></div>					
@@ -80,7 +97,9 @@
 			</div>
 			
 			<div id="panel_docs">
-				<h3>ЭКСТРЕННЫЕ СЛУЖБЫ</h3>
+				<div class="title_blue">
+					<span class="title_txt">Экстренные службы</span> 
+				</div>
 				<ul>
 				    <li><span><b>МЧС: </b>010 (моб. тел.), 67-32-42 (дежурный)</span></li>
 					<li><span><b>МВД: </b>020 (моб. тел.), 99-45-00 (дежурный)</span></li>
