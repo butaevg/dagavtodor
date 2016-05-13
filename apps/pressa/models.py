@@ -60,10 +60,11 @@ class Post(models.Model):
     source = models.CharField(max_length=100, blank=True, verbose_name='Источник')
     body = models.TextField(verbose_name='Текст')
     mainpic = models.ImageField(max_length=250, upload_to='news/%Y-%m-%d/', verbose_name='Картинка на главной')
-    putdate = models.DateField(verbose_name='Дата')
+    putdate = models.DateTimeField(verbose_name='Дата')
     
     def get_absolute_url(self):
-        return '/pressa/post/upload_pic/%i/' % self.id
+        #return '/pressa/post/upload_pic/%i/' % self.id
+        return '/pressa/post/%i/' % self.id
 
     class Meta:
         ordering = ['-putdate']

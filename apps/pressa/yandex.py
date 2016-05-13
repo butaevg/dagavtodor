@@ -2,13 +2,11 @@
 from django.contrib.syndication.views import Feed
 from django.utils.xmlutils import SimplerXMLGenerator
 from django.utils.feedgenerator import Rss201rev2Feed
-
+from django.core.urlresolvers import reverse
 from django.utils import timezone
 from pytz import timezone as tz
 import datetime
-
 from pressa.models import Post
-
 
 
 class SXG(SimplerXMLGenerator):
@@ -54,8 +52,7 @@ class RssYandex(Rss):
 class YandexRSS(Feed):
     feed_type = RssYandex
     title = "Агентство по дорожному хозяйству Республики Дагестан"
-    description = "Новости дорожной отрасли Дагестана"
-    
+    description = "Новости дорожной отрасли Дагестана" 
     link = "/"
 
     # Опытным путем удалось определить, что Яндексу интересны новости 
@@ -68,11 +65,14 @@ class YandexRSS(Feed):
     def item_title(self, item):
         return item.name
 
+    def item_link(self, item):
+        return reverse('news-item', args=[item.pk])
+
     # По-умолчанию будет отдаваться часовой пояс -0000, 
     # контент-менеджеру Яндекса этот момент не понравился и просили 
     # установить часовой пояс местонахождения сервера
-    def item_putdate(self, item):
-        return item.putdate.replace(tzinfo=tz('Etc/GMT+3'))
+    def item_pubdate(self, item):
+        return item.putdate.replace(tzinfo=tz('Etc/GMT-3'))
 
     def item_description(self, item):
         return item.body
