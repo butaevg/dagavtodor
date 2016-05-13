@@ -63,8 +63,7 @@ class Post(models.Model):
     putdate = models.DateTimeField(verbose_name='Дата')
     
     def get_absolute_url(self):
-        #return '/pressa/post/upload_pic/%i/' % self.id
-        return '/pressa/post/%i/' % self.id
+        return '/pressa/post/upload_pic/%i/' % self.id
 
     class Meta:
         ordering = ['-putdate']
