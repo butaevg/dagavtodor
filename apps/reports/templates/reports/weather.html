@@ -37,10 +37,11 @@
 				<th width=10%>Дата и время сводки</th>
 				<th width=7%>Погода</th>
 				<th width=5%>Темп.(С)</th>
-				<th width=8%>Проезжаемость на дорогах респ. значения</th>
-				<th width=8%>Проезжаемость на дорогах местн. значения</th>
+				<th width=6%>Проезжаемость на дорогах респ. значения</th>
+				<th width=6%>Проезжаемость на дорогах местн. значения</th>
 				<th>Проводимые работы</th>
-				<th width=5%>Instagram</th><tr>
+				<th width=4%>Instagram</th>
+				<th width=5%>Email</th><tr>
 			</thead>
 						
 			{% for row in rows %}
@@ -55,6 +56,7 @@
 			<td>{{ row.pr_m }}</td>
 			<td>{{ row.works }}</td>
 			<td><a href="https://instagram.com/{{ row.rayon.insta }}/" target="_blank"><img src="http://dagavtodor.ru/static/img/social/insta.png" width="25"></a></td>
+			<td><a href="https://e.mail.ru/login?email=dep45sod@mail.ru" target="_blank"><img src="http://dagavtodor.ru/static/img/icons/bred.png" width="25"></a></td>
 			</tr>
 			
 		 	{% endfor %}
