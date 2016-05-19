@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load thumbnail %}
+{% load tz %}
 
 {% block title %}Агентство по дорожному хозяйству РД :: Официальный сайт{% endblock %}
 
@@ -16,7 +17,10 @@
     		<div id="news">
     			<ul>
     				{% for post in posts %}
-    					<li><a href="pressa/post/{{ post.id }}/"/><h3>{{ post.name }}</h3></a><span>{{ post.putdate }}</span><i></i></li>				
+    					<li><a href="pressa/post/{{ post.id }}/"/><h3>{{ post.name }}</h3></a><span>
+    					{% localtime off %}
+    						{{ post.putdate }}
+    					{% endlocaltime %}</span><i></i></li>				
     				{% endfor %}								
     			</ul>
     			{% for post in posts %}

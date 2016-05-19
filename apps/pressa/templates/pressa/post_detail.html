@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load thumbnail %}
+{% load tz %}
 
 {% block title %}{{ post.name }}{% endblock %}
 
@@ -14,7 +15,7 @@
 			<img src="{{ main.url }}" style="float: left; margin: 7px 15px 7px 0;">
 		{% endthumbnail %}</a>
 
-		<em>{{ post.putdate }} &nbsp;&nbsp;::&nbsp;&nbsp; {{ post.source }}
+		<em>{% localtime off %}{{post.putdate}}{% endlocaltime %} &nbsp;&nbsp;::&nbsp;&nbsp; {{ post.source }}
 		</em></p>
 		<p>{{ post.body|safe|linebreaks }}</p><br>
 

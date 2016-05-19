@@ -1,5 +1,7 @@
 {% extends "base_cp.html" %}
 
+{% load tz %}
+
 {% block title %} {% endblock %}
 
 {% block content %}
@@ -12,7 +14,7 @@
 	
 	{% for post in post_list %}
 		<tr class="post{{ post.id }}">
-		  <td>{{ post.putdate }}</td>
+		  <td>{% localtime off %}{{post.putdate}}{% endlocaltime %}</td>
 		  <td>{{ post.name }}</td>  
 		  <td><a href=pressa/post/upload_pic/{{ post.id }}/><img src='static/img/actions/add_img.png' title='Доб. фотки'></a></td>             
 		  <td><a href=pressa/post/edit/{{ post.id }}/><img src='static/img/actions/edit.png' title='Изменить'></a></td> 
