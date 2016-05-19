@@ -54,14 +54,11 @@ class Gallery(ListView):
 
 
 #--- Новости
-class PostDetail(DetailView):
+class PostList(ListView):
     model = Post
 
-class NewsYearArchive(YearArchiveView):
-    queryset = Post.objects.all()
-    date_field = 'putdate'
-    make_object_list = True
-    allow_future = True
+class PostDetail(DetailView):
+    model = Post
 
 class PostCp(ListView):
     model = Post
@@ -86,8 +83,8 @@ class PostCreate(CreateView):
     model = Post
     fields = ['name', 'source', 'body', 'mainpic', 'putdate']
 
-    def get_initial(self):
-        return { 'putdate': datetime.today().strftime('%d.%m.%Y') }
+    #def get_initial(self):
+        #return { 'putdate': datetime.today().strftime('%d.%m.%Y') }
 
 class PostEdit(UpdateView):
     model = Post

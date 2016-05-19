@@ -1,5 +1,6 @@
 #coding: utf-8
-from django.db import models
+from django.db import models 
+from datetime import datetime
 
 class Advert(models.Model):
     name = models.CharField(max_length=512, verbose_name='Заголовок')
@@ -60,8 +61,8 @@ class Post(models.Model):
     source = models.CharField(max_length=100, blank=True, verbose_name='Источник')
     body = models.TextField(verbose_name='Текст')
     mainpic = models.ImageField(max_length=250, upload_to='news/%Y-%m-%d/', verbose_name='Картинка на главной')
-    putdate = models.DateTimeField(verbose_name='Дата')
-    
+    putdate = models.DateTimeField(verbose_name='Дата', default=datetime.now) 
+
     def get_absolute_url(self):
         return '/pressa/post/upload_pic/%i/' % self.id
 

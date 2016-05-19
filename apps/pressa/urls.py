@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from .views import (PostDetail, NewsYearArchive, PostCp, PostCreate, 
+from .views import (PostList, PostDetail, PostCp, PostCreate, 
     PostEdit, PostDelete, AdvertList, AdvertDetail, ArticleList, 
     ArticleDetail, ArticleCp, ArticleCreate, ArticleEdit, ArticleDelete, 
     QuestionList, QuestionCreate, QuestionSuccess, QuestionCp, QuestionEdit, QuestionDelete, Gallery)
@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^advert/(?P<pk>[0-9]+)/$', AdvertDetail.as_view()), 
 	#news
     url(r'^post/(?P<pk>[0-9]+)/$', PostDetail.as_view(), name='news-item'), 
-    url(r'^newsarchive/(?P<year>[0-9]{4})/$', NewsYearArchive.as_view()), 
+    url(r'^newsarchive/$', PostList.as_view()), 
     url(r'^news/cp/', login_required(PostCp.as_view())), 
     url(r'^post/create/', login_required(PostCreate.as_view())),
     url(r'^post/edit/(?P<pk>[0-9]+)/$', login_required(PostEdit.as_view())),

@@ -29,12 +29,11 @@ class Rss(Rss201rev2Feed):
         self.endChannelElement(handler)
         handler.endElement(u"rss")
 
-    # Добавляем тэги "yandex:logo" в которых мы дадим ссылке до логотипов 
-    # нашего издания
+    # Добавляем тэги "yandex:logo" в которых мы дадим ссылки до логотипов сайта
     def add_root_elements(self, handler):
         super(Rss, self).add_root_elements(handler)
-        handler.addQuickElement(u'yandex:logo', 'http://mixisport.com/media/img/rss/logo100.png',)     
-        handler.addQuickElement(u'yandex:logo', 'http://mixisport.com/media/img/rss/logo180.png', {'type': 'square'})     
+        handler.addQuickElement(u'yandex:logo', 'http://dagavtodor.ru/static/img/logo/logo_standart.jpg',)     
+        handler.addQuickElement(u'yandex:logo', 'http://dagavtodor.ru/static/img/logo/logo_square.jpg', {'type': 'square'})     
 
 class RssYandex(Rss):
     def rss_attributes(self):
@@ -59,7 +58,7 @@ class YandexRSS(Feed):
     # не старше 7 дней, все остальное при проверке он будет помечать как 
     # "плохая статья", поэтому выбираем статьи за 7 дней
     def items(self):
-        return Post.objects.filter(putdate__gt=(timezone.now() - datetime.timedelta(days=9))).order_by('-putdate')
+        return Post.objects.filter(putdate__gt=(timezone.now() - datetime.timedelta(days=7))).order_by('-putdate')
         #return Post.objects.order_by('-putdate')
 
     def item_title(self, item):
