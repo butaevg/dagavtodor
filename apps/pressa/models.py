@@ -76,8 +76,9 @@ class PostImg(models.Model):
 
 
 class Question(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Имя *')
-    city = models.CharField(blank=True, max_length=100, verbose_name='Город')
+    name = models.CharField(max_length=100, verbose_name='ФИО полностью *')
+    city = models.CharField(blank=True, max_length=100, verbose_name='Город') 
+    address = models.CharField(blank=True, max_length=200, verbose_name='Почтовый адрес *')
     email = models.EmailField(blank=True, verbose_name='Адрес электр. почты')
     msg = models.TextField(verbose_name='Текст обращения *')
     img = models.ImageField(blank=True, upload_to='faq/%Y-%m-%d/', verbose_name='Прилагаемoе фото')

@@ -104,7 +104,7 @@ class QuestionList(ListView):
 
 class QuestionCreate(CreateView):
     model = Question
-    fields = ['name', 'city', 'email', 'msg', 'img']
+    fields = ['name', 'city', 'address', 'email', 'msg', 'img']
     success_url = '/pressa/question/success/'
 
 class QuestionSuccess(TemplateView):
