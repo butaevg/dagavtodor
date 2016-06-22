@@ -10,7 +10,7 @@ from .forms import WeatherDateForm, WeatherForm, WorkForm, WorkImgForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView
 from datetime import datetime
-from helpers.paginate import paginate
+from core.helpers import paginate
 
 #--- Погодные условия
 def weather(request):
