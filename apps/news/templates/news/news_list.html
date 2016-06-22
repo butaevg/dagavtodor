@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load tz %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Новости</h3>
+
+		{% for post in post_list %}
+			<p><a href=news/{{post.id}}/><em>&#8226;&nbsp;{% localtime off %}{{post.putdate}}{% endlocaltime %}</em>&nbsp;&nbsp;<b>{{post.name}}</a></b></p>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}

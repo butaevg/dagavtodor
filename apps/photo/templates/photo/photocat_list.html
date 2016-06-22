@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %} Фотоархив {% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>Фотоархив</h3>
+
+		<div class=photo>
+			{% for album in photocat_list %}
+				<br><br><p><b>{{album.name}}</b></p>
+				{% for pic in album.cat.all %}
+					<a href="{{MEDIA_URL}}{{ pic.url }}" class=fancybox data-fancybox-group=gallery title='{{album.name}}'>
+					    {% thumbnail pic.url "150x100" as im %}
+					    <img src="{{ im.url }}" vspace=3>
+					    {% endthumbnail %}
+					</a>
+				{% endfor %}
+			{% endfor %}
+		</div>
+
+	</div>
+
+{% endblock %}

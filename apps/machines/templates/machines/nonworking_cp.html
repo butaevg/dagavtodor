@@ -1,0 +1,118 @@
+{% extends "base_cp.html" %}
+
+{% load thumbnail %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2>Техника на списание</h2> 
+    {% if user.cat.id == 3 %}
+    <h2><a href="machines/nonworking_create/">Добавить технику</a></h2><br><br>
+    {% endif %}
+
+    <table class="tablesorter" id="machine_table">
+        <thead><tr>
+            <th width="10%" style="display: none">Дата</th>
+            <th width="10%">Дата</th>
+            <th>Техника</th>
+            <th width="8%">Год</th>
+            <th width="15%">Фото</th>
+            <th width="25%">ДЭП</th></tr>
+        </thead>
+
+    {% for row in machine_list %}
+		<tr class="mach{{ row.id }}">
+        <td>{{ row.putdate|date:"d.m.Y" }}</td> 
+        <td style='display:none'>{{ row.putdate|date:"Y-m-d" }}</td>
+		<td>{{row.name}}
+        {% if row.dep.id == user.id %}
+        &nbsp;&nbsp;&nbsp;<a id="{{ row.id }}" class="delete" name="mach{{ row.id }}" href="#"><img src="http://dagavtodor.ru/static/img/actions/delete.png" width="18" title="Удалить"></a>
+        {% endif %}
+        <br><i>{{row.body}}</i><br>
+        </td>
+		<td>{{row.year_issue}}</td>
+		<td><a class=fancybox data-fancybox-group=tech{{row.id}} href={{MEDIA_URL}}{{ row.pic_1 }} title="{{row.name}}">
+            {% thumbnail row.pic_1 "150x100" as im %}
+        	<img src="{{ im.url }}">
+        	{% endthumbnail %}
+            </a>
+            {% if row.pic_2 %}
+            <a class=fancybox data-fancybox-group=tech{{row.id}} href={{MEDIA_URL}}{{ row.pic_2 }} title="{{row.name}}">
+            {% thumbnail row.pic_2 "150x100" as im %}
+            <img src="{{ im.url }}" style="display: none;">
+            {% endthumbnail %}
+            </a>
+            {% endif %}
+            {% if row.pic_3 %}
+            <a class=fancybox data-fancybox-group=tech{{row.id}} href={{MEDIA_URL}}{{ row.pic_3 }} title="{{row.name}}">
+            {% thumbnail row.pic_3 "150x100" as im %}
+            <img src="{{ im.url }}" style="display: none;">
+            {% endthumbnail %}
+            </a>
+            {% endif %}
+            {% if row.pic_4 %}
+            <a class=fancybox data-fancybox-group=tech{{row.id}} href={{MEDIA_URL}}{{ row.pic_4 }} title="{{row.name}}">
+            {% thumbnail row.pic_4 "150x100" as im %}
+            <img src="{{ im.url }}" style="display: none;">
+            {% endthumbnail %}
+            </a>
+            {% endif %}
+            {% if row.pic_5 %}
+            <a class=fancybox data-fancybox-group=tech{{row.id}} href={{MEDIA_URL}}{{ row.pic_5 }} title="{{row.name}}">
+            {% thumbnail row.pic_5 "150x100" as im %}
+            <img src="{{ im.url }}" style="display: none;">
+            {% endthumbnail %}
+            </a>
+            {% endif %}
+        </td>
+		<td>{{row.dep}}</td></tr>
+	{% endfor %} 
+
+	</table><br><br>
+
+    <div id="dialog-confirm" title="Удаление записи" style="display: none">
+      <p>Вы действительно хотите удалить запись без возможности восстановления?</p>
+    </div> 
+
+    <script>
+    $(document).ready(function(){
+        $("a.delete").click(function(e) {
+            e.preventDefault(); 
+            var id = $(this).attr('id');
+            var name = $(this).attr('name');
+
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                width: 310, 
+                height: "auto",
+                modal: true,
+                autoOpen: false, 
+                show: { effect: "fade", duration: 800 }, 
+                hide: { effect: "explode", duration: 1000 },
+                buttons: {
+                "Удалить": function() {
+                  $.ajax({
+                        url: 'machines/delete/'+id+'/',
+                        data: {'id': id},
+                        success: function(r) {
+                           $('table tr.'+name).remove();
+                        }
+                    });
+                  $(this).dialog("close");
+                },
+                "Отмена": function() {
+                  $( this ).dialog( "close" );
+                }
+                }
+                });
+            $("#dialog-confirm").dialog("open"); 
+            return false;
+        });
+    });
+    </script>    
+      
+</div>  
+{% endblock %}

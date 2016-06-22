@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{cam.name}}{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>{{cam.name}}</h3>
+
+		<p style='padding-left: 30px;'><a href="roads/webcam/3g/"><<< все 3g-камеры</a></p>   
+		{% for day in data %}
+			<b>{{day}}</b><br>
+			{% for pic in pics %}
+				{pic}
+			{% endfor %}<br>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}

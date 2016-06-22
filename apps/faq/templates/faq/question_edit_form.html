@@ -1,0 +1,34 @@
+{% extends "base_cp.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+<div id="content_big">
+
+    <h2>Обращение гражданина {{question.name}} ({{ question.putdate }})</h2><br><br>
+    		
+    <form action="" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+		<h3><strong>{{form.msg.label}}</strong>       
+        {% for error in form.msg.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.msg|attr:"rows:8"|attr:"cols:80"}}
+		
+		<h3><strong>{{form.answer.label}}</strong>
+        {% for error in form.answer.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.answer|attr:"rows:8"|attr:"cols:80"}}
+
+        <h3><strong> </strong></h3>
+        <input type=submit value='Сохранить'>
+    </form>
+
+</div>
+
+{% endblock %}

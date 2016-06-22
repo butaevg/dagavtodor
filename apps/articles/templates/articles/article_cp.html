@@ -1,0 +1,30 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+	<h2><a href=articles/create/>Добавить статью</a></h2><br><br>
+	
+	<table class="cp_table"><tr><th width=15%>Дата</th><th>Статья</th><th colspan=2>Изм./Уд.</th></tr>
+	
+	{% for post in article_list %}
+		<tr>
+		  <td>{{ post.putdate }}</td>
+		  <td>{{ post.name }}</td>              
+		  <td><a href=articles/edit/{{ post.id }}/><img src='static/img/actions/edit.png' title='Изменить'></a></td> 
+		  <td><a href=articles/delete/{{ post.id }}/><img src='static/img/actions/delete.png' title='Удалить'></a></td>
+		 </tr>
+	{% endfor %}	
+	
+	</table><br><br>
+
+	<div style='margin-left: 30px; margin-bottom: 20px;'>
+
+	</div>
+
+</div>	
+
+{% endblock %}

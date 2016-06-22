@@ -1,0 +1,95 @@
+{% extends "base_cp.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+function changeText(){
+ var id_count_all = 0;
+ id_count_all += parseFloat(document.getElementById('id_count_current').value);
+ document.getElementById('id_count_all').value = id_count_all;
+}
+</script>
+
+<div id="content_big">
+
+    <h2>Электронный журнал работ по содержанию</h2><br>
+		
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+<table>
+<tr>
+<td><strong>Номер<br> позиции<br> по смете</strong></td>
+<td><strong>Наименование работ</strong></td> 
+<td><strong>Номер<br> единичной<br> расценки</strong></td>
+<td><strong>Единица<br> измерения</strong></td>
+<td><strong>{{form.count_all.label|safe}}</strong></td>
+<td><strong>{{form.count_current.label|safe}}</strong></td>
+<td><strong>Цена за<br>единица<br> измерения</strong></td>
+<td><strong>{{form.val_all.label|safe}}</strong></td> 
+<td><strong>{{form.val_current.label|safe}}</strong></td> 
+<td><strong>{{form.position.label|safe}}</strong></td>
+</tr>
+<tr>
+    <td></td> 
+    <td></td>
+    <td></td> 
+    <td></td>
+
+    <td>   
+    {% for error in form.count_all.errors %}
+    <span style="color: red;">[{{error}}]</span>
+    {% endfor %}
+    </td>
+
+    <td>     
+    {% for error in form.count_current.errors %}
+    <span style="color: red;">[{{error}}]</span>
+    {% endfor %}
+    </td>
+
+    <td></td>
+
+    <td>    
+    {% for error in form.val_all.errors %}
+    <span style="color: red;">[{{error}}]</span>
+    {% endfor %}
+    </td>
+
+    <td>
+    {% for error in form.val_current.errors %}
+    <span style="color: red;">[{{error}}]</span>
+    {% endfor %}
+    </td>
+
+    <td>
+    {% for error in form.position.errors %}
+    <span style="color: red;">[{{error}}]</span>
+    {% endfor %}
+    </td>
+
+     
+</tr>    
+<tr>
+<td><input type="text" size="2" value='{{rec.work_type.pos_smeta}}' readonly></td>
+<td><textarea readonly cols="30" rows="5">{{rec.work_type.name}}</textarea></td>
+<td><input type="text" size="1" value='{{rec.work_type.num_unit}}' readonly></td>
+<td><input type="text" size="5" value='{{rec.work_type.unit}}' readonly></td> 
+<td>{{form.count_all}}</td>
+<td>{{form.count_current|attr:"oninput:changeText()"}}</td>
+<td><input type="text" size="5" value='{{rec.work_type.price_unit}}' readonly></td>
+<td>{{form.val_all}}</td> 
+<td>{{form.val_current}}</td> 
+<td>{{form.position}}</td>
+<td rowspan="3"><input type="submit" value='Сохранить'></td>
+</tr>    
+</table>        
+    </form>
+
+</div>	  
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2><a href=reports/orders/my/><<< назад к списку</a></h2><br><br>
+
+    Дата: <b>{{ order.putdate }}</b><br>
+    Срок исполнения: <b>{{ order.expiredate }}</b><br><br>
+    <b>{{order.name}}</b><br>
+    {{order.body}}<br><br><br><br>
+    <h2>Ход выполнения поручения</h2><br><br>
+
+    <span style="color: red;">Внимание!<br> Процент выполнения - только целое число от 0 до 100!</span><br><br>
+              
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <h3><strong>{{form.process.label}}</strong>        
+        {% for error in form.process.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.process}}
+
+        <h3><strong>{{form.process_perc.label}}</strong>        
+        {% for error in form.process_perc.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.process_perc}}
+
+        <h3></h3>
+        <input type=submit value=Сохранить> 
+    </form>
+
+</div>
+{% endblock %}
