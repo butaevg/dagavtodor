@@ -1,5 +1,5 @@
 *.pyc
 .git/
 *.sqlite3
-/upload/ 
 /static/
+/upload/
