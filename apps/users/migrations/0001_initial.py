@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=100, verbose_name=b'\xd0\x93\xd1\x80\xd1\x83\xd0\xbf\xd0\xbf\xd0\xb0')),
-                ('cats', models.ManyToManyField(to='users.Category', verbose_name=b'\xd0\xa0\xd0\xb0\xd0\xb7\xd0\xb4\xd0\xb5\xd0\xbb\xd1\x8b')),
+                ('cats', models.ManyToManyField(to='users.Category', verbose_name='\u0420\u0430\u0437\u0434\u0435\u043b\u044b')),
             ],
             options={
                 'db_table': 'users_group',

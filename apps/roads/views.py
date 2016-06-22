@@ -2,19 +2,12 @@
 import os
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Map, Road, Report, ReportImg, Cam3g, CamIp
+from .models import Road, Report, ReportImg
 from django.contrib.auth.decorators import login_required 
-from dagavtodor.mixins import LoginRequiredMixin
+from core.mixins import LoginRequiredMixin
 from .forms import ReportImgForm
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-#--- Карты районов
-class MapList(ListView):
-    model = Map
-
-class MapDetail(DetailView):
-    model = Map
 
 #--- Важнейшие объекты (ход работ)
 class RoadList(ListView):
@@ -54,13 +47,3 @@ class RoadProgressImg(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.report_id = self.kwargs['pk']
         return super(RoadProgressImg, self).form_valid(form)
-
-#--- Камеры
-def webcam_3g(request):
-    return HttpResponseRedirect('http://media.dagavtodor.ru/videomonitoring/gsm/')
-
-class CamIpList(ListView):
-    model = CamIp
-
-class CamIpDetail(DetailView):
-    model = CamIp

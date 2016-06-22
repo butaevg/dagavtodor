@@ -1,148 +1,16 @@
 #coding: utf-8
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Insta, Order, OrderExec, Psd, Weather, WeatherCurrent, Work, WorkImg, Machine
+from .models import Weather, WeatherCurrent, Work, WorkImg
 from users.models import DUser
 from roads.models import Road
 from django.contrib.auth.decorators import login_required 
-from dagavtodor.mixins import LoginRequiredMixin 
-from .forms import OrderExecForm, PsdExeForm, WeatherDateForm, WeatherForm, WorkForm, WorkImgForm
+from core.mixins import LoginRequiredMixin 
+from .forms import WeatherDateForm, WeatherForm, WorkForm, WorkImgForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView
 from datetime import datetime
 from helpers.paginate import paginate
-
-#--- Техника на списание
-class MachinesCp(ListView):
-    queryset = Machine.objects.filter(working=0) 
-    template_name = 'reports/machine_cp.html'
-
-class MachineCreate(CreateView):
-    model = Machine
-    fields = ['name', 'body', 'year_issue', 'pic_1', 'pic_2', 'pic_3', 'pic_4', 'pic_5']
-    success_url = '/reports/machines/cp/'
-
-    def form_valid(self, form):
-        form.instance.dep = self.request.user 
-        form.instance.working = 0 
-        return super(MachineCreate, self).form_valid(form)
-
-class MachinesWorkingCp(ListView):
-    queryset = Machine.objects.filter(working=1) 
-    template_name = 'reports/machine_working_cp.html'
-
-class MachineWorkingCreate(CreateView):
-    model = Machine
-    fields = ['name', 'body', 'year_issue', 'pic_1', 'pic_2', 'pic_3', 'pic_4', 'pic_5']
-    success_url = '/reports/machines_working/cp/'
-
-    def form_valid(self, form):
-        form.instance.dep = self.request.user
-        return super(MachineWorkingCreate, self).form_valid(form)
-
-@login_required
-def machine_delete(request, id):
-    machine = Machine.objects.get(pk=id)
-    machine.delete()
-    return HttpResponse('OK')
-
-
-#--- Инстаграм
-def instagram(request):
-    deps = Insta.objects.all()
-    day, month = (datetime.today().strftime('%d'), datetime.today().strftime('%m'))
-    return render(request, 'reports/instagram.html', {'deps': deps, 'day': day, 'month': month})
-
-
-#--- Поручения
-@login_required
-def my_orders(request):
-    orders = Order.objects.filter(members=request.user.id)
-    return render(request, 'reports/orders_my.html', {'orders': orders})
-
-@login_required
-def order_exec(request, id):
-    rep = OrderExec.objects.filter(order_id=id, member_id=request.user.id).first()
-    if rep == None:        
-        if request.method == 'POST':
-            form = OrderExecForm(request.POST)
-            if form.is_valid():
-                report = OrderExec(
-                    process = form.cleaned_data['process'], 
-                    process_perc = form.cleaned_data['process_perc'], 
-                    member_id = request.user.id, 
-                    order_id = id)
-                report.save()
-                return HttpResponseRedirect('/reports/orders/my/')
-        else:
-            order = Order.objects.get(pk=id)
-            form = OrderExecForm()
-        return render(request, 'reports/orders_exec.html', {'form': form, 'order': order})
-    else:
-        if request.method == 'POST':
-            form = OrderExecForm(request.POST)
-            if form.is_valid():
-                report = OrderExec(
-                    id = rep.id,
-                    process = form.cleaned_data['process'], 
-                    process_perc = form.cleaned_data['process_perc'])
-                report.save(update_fields=['process', 'process_perc', ])
-                return HttpResponseRedirect('/reports/orders/my/')
-        else:
-            order = Order.objects.get(pk=id)
-            form = OrderExecForm(initial={
-                    'process': rep.process, 
-                    'process_perc': rep.process_perc})
-        return render(request, 'reports/orders_exec.html', {'form': form, 'order': order})
-
-
-@login_required
-def order_list(request):
-    orders = Order.objects.filter(hide=0)
-    return render(request, 'reports/order_list.html', {'orders': orders})
-
-@login_required
-def order_detail(request, id):
-    order = Order.objects.get(pk=id)
-    rows = OrderExec.objects.filter(order_id=id)
-    return render(request, 'reports/order_detail.html', {'order': order, 'rows': rows})
-
-#--- ПСД
-@login_required
-def my_psd(request):
-    roads = Psd.objects.filter(contractor=request.user.id)
-    return render(request, 'reports/psd_my.html', {'roads': roads})
-
-@login_required
-def psd_exec(request, id):
-    if request.method == 'POST':
-        form = PsdExeForm(request.POST)
-        if form.is_valid():
-            price = float(form.cleaned_data['price'])
-            exe = float(form.cleaned_data['exe'])
-            getsum = float(form.cleaned_data['getsum'])
-            road = Psd(
-                id = id, 
-                price = price, 
-                exe = exe, 
-                getsum = getsum, 
-                exe_perc = round((exe/price)*100), 
-                exe_getsum = round((getsum/price)*100))
-            road.save(update_fields=['price', 'exe', 'getsum', 'exe_perc', 'exe_getsum', ])
-            return HttpResponseRedirect('/reports/psd/my/')
-    else:
-        road = Psd.objects.get(pk=id)
-        form = PsdExeForm(initial={
-            'price': road.price, 
-            'exe': road.exe, 
-            'getsum': road.getsum})
-    return render(request, 'reports/psd_exec.html', {'form': form, 'road': road})
-
-class PsdCp(LoginRequiredMixin, ListView):
-    queryset = DUser.objects.filter(cat=7)
-    context_object_name = 'contractors'
-    template_name = 'reports/psd_cp.html' 
-
 
 #--- Погодные условия
 def weather(request):

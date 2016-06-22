@@ -2,27 +2,6 @@
 from django import forms
 from roads.models import Road
 
-class OrderExecForm(forms.Form):
-	process = forms.CharField(
-		label='Что выполнено', 
-		widget=forms.Textarea(attrs={'rows': '7', 'cols': '70'})) 
-	process_perc = forms.CharField(
-		label='Процент выполнения', 
-		widget=forms.TextInput(attrs={'size': '10'}))
-
-
-class PsdExeForm(forms.Form):
-	price = forms.CharField(
-		label='Стоимость ', 
-		widget=forms.TextInput(attrs={'size': '15'}))
-	exe = forms.CharField(
-		label='Выполнение из ', 
-		widget=forms.TextInput(attrs={'size': '15'}))
-	getsum = forms.CharField(
-		label='Полученно из ', 
-		widget=forms.TextInput(attrs={'size': '15'}))
-
-
 class WeatherDateForm(forms.Form):
 	putdate = forms.CharField(
 		label='Дата: ', 
@@ -91,18 +70,3 @@ class WorkImgForm(forms.Form):
 	pic = forms.ImageField(
 		label='Загрузить фотографии к отчету | Внимание: не больше 10 фотографий!',
 		widget=forms.FileInput())
-
-
-# class MachineForm(forms.Form):
-# 	name = forms.CharField(
-# 		label='Наименование',
-# 		widget=forms.TextInput(attrs={'size': '61'}))  
-# 	body = forms.CharField(
-# 		label='Описание',
-# 		widget=forms.Textarea(attrs={'rows': '5', 'cols': '60'}))
-# 	year_issue = forms.CharField(
-# 		label='Год выпуска', 
-# 		widget=forms.TextInput(attrs={'size': '11'})) 
-# 	pic_1 = forms.ImageField(
-# 		label='Фотография',
-# 		widget=forms.FileInput())

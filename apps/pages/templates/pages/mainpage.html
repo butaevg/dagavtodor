@@ -11,13 +11,13 @@
         <div id="news_block">
             <div class="title_blue">
 				<span class="title_txt">Новости</span> 
-				<div class="all_link"><a href="pressa/newsarchive/">Все новости</a></div>
+				<div class="all_link"><a href="news/archive/">Все новости</a></div>
 			</div>
 
     		<div id="news">
     			<ul>
     				{% for post in posts %}
-    					<li><a href="pressa/post/{{ post.id }}/"/><h3>{{ post.name }}</h3></a><span>
+    					<li><a href="news/{{ post.id }}/"/><h3>{{ post.name }}</h3></a><span>
     					{% localtime off %}
     						{{ post.putdate }}
     					{% endlocaltime %}</span><i></i></li>				
@@ -56,7 +56,7 @@
 				<div id="cam"><a href="reports/weather/"><img src='static/img/sidebar/pogoda.png'></a></div>
 				<div id="cam"><a href="roads/progress/110/"><img src='static/img/sidebar/xod.png'></a></div>
 				<div id="cam"><a href="page/obrasheniya-grazhdan"><img src='static/img/sidebar/faq.png'></a></div>
-				<div id="cam"><a href="pressa/photo/"><img src='static/img/sidebar/photo.png'></a></div>
+				<div id="cam"><a href="photo/"><img src='static/img/sidebar/photo.png'></a></div>
 				<div id="cam"><a href="page/protivodejstvie-korrupcii/"><img src='static/img/sidebar/anticor.png'></a></div>
 			</ul>	
 		</div>
