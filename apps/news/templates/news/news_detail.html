@@ -3,27 +3,27 @@
 {% load thumbnail %}
 {% load tz %}
 
-{% block title %}{{ post.name }}{% endblock %}
+{% block title %}{{ news.name }}{% endblock %}
 
 {% block content %}
 
 	<div id="page">
-		<h3><a href="newsarchive/">Новости</a> > {{ post.name }}</h3>
+		<h3><a href="news/archive/">Новости</a> > {{ news.name }}</h3>
 
-		<p><a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{MEDIA_URL}}{{ post.mainpic }}>
-		{% thumbnail post.mainpic "150x100" crop="center" as main %}
+		<p><a class=fancybox data-fancybox-group=gallery title='{{ news.name }}' href={{MEDIA_URL}}{{ news.mainpic }}>
+		{% thumbnail news.mainpic "150x100" crop="center" as main %}
 			<img src="{{ main.url }}" style="float: left; margin: 7px 15px 7px 0;">
 		{% endthumbnail %}</a>
 
-		<em>{% localtime off %}{{post.putdate}}{% endlocaltime %} &nbsp;&nbsp;::&nbsp;&nbsp; {{ post.source }}
+		<em>{% localtime off %}{{news.putdate}}{% endlocaltime %} &nbsp;&nbsp;::&nbsp;&nbsp; {{ news.source }}
 		</em></p>
-		<p>{{ post.body|safe|linebreaks }}</p><br>
+		<p>{{ news.body|safe|linebreaks }}</p><br>
 
 		<div id="grid">
 			<ul>
-			{% for img in post.pics.all %}
+			{% for img in news.pics.all %}
 				<li class=''>
-					<a class=fancybox data-fancybox-group=gallery title='{{ post.name }}' href={{MEDIA_URL}}{{ img.pic }}>
+					<a class=fancybox data-fancybox-group=gallery title='{{ news.name }}' href={{MEDIA_URL}}{{ img.pic }}>
     					{% thumbnail img.pic "150x100" as im %}
     					<img src={{ im.url }}>
     					{% endthumbnail %}
