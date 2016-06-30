@@ -52,7 +52,6 @@ INSTALLED_APPS = (
     'machines',
     'maps',
     'news',
-    'oad', 
     'orgs', 
     'orders', 
     'pages', 

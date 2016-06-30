@@ -11,7 +11,6 @@ urlpatterns = [
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^docs/', include('docs.urls')), 
     url(r'^faq/', include('faq.urls')), 
-    url(r'^oad/', include('oad.urls')), 
     url(r'^orgs/', include('orgs.urls')), 
     url(r'^instagram/', include('instagram.urls')), 
     url(r'^machines/', include('machines.urls')),
