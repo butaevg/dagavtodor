@@ -14,7 +14,7 @@ class Road(models.Model):
     body = models.TextField(blank=True, verbose_name='Описание')
     pic = models.ImageField(max_length=250, blank=True, upload_to='roads', verbose_name='Карта-схема')
     cat = models.CharField(max_length=3, choices=TYPE_OF_OBJ, verbose_name='Вид')
-    contractor = models.ForeignKey(DUser, blank=True, verbose_name='Подрядчик')
+    contractor = models.ForeignKey(DUser, related_name="contractor_name", blank=True, verbose_name='Подрядчик')
     onsite = models.BooleanField(default=False, verbose_name='Показывать на сайте')
     report = models.BooleanField(default=False, verbose_name='Есть отчеты')
     complete = models.BooleanField(default=False, verbose_name='Завершен')
