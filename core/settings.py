@@ -61,7 +61,8 @@ INSTALLED_APPS = (
     'roads', 
     'sorl.thumbnail', 
     'users', 
-    'widget_tweaks',
+    'widget_tweaks', 
+    'workbook', 
 )
 
 MIDDLEWARE_CLASSES = (
