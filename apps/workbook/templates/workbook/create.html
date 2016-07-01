@@ -1,0 +1,41 @@
+{% extends "base_cp.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content_big">
+
+    <h2>Электронный журнал работ по содержанию дорог</h2><br>
+		
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <h3><strong>{{form.road.label}}</strong>        
+        {% for error in form.road.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.road}}
+
+        <h3><strong>{{form.file.label}}</strong>        
+        {% for error in form.file.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.file}}
+
+        <h3><strong>{{form.putdate.label}}</strong>        
+        {% for error in form.putdate.errors %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}</h3>
+        {{form.putdate|attr:"class:datepicker"}}
+
+        <h3> </h3>
+        <input type=submit value='Сохранить'>
+    </form>
+
+</div>	    
+
+{% endblock %}

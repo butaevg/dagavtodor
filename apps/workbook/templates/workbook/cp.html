@@ -1,0 +1,23 @@
+{% extends "base_cp.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div id="content">
+
+	<h2>Электронный журнал работ по содержанию дорог</h2><br>
+	
+	<div style="min-height: 1000px;"></div>
+
+</div>	
+
+<div id="sidebar"><ul><li><h2>Районы</h2><ul>
+	{% for dep in orgs %}
+		<li><a href=workbook/show/{{dep.id}}/>{{dep.name}}</a></li>
+	{% endfor %} 
+	</ul></li></ul>
+</div>
+<div style="clear: both;">&nbsp;</div>
+
+{% endblock %}
