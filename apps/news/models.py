@@ -10,7 +10,7 @@ class News(models.Model):
     putdate = models.DateTimeField(verbose_name='Дата', default=datetime.now) 
 
     def get_absolute_url(self):
-        return 'news/upload_pic/%i/' % self.id
+        return '/news/upload_pic/%i/' % self.id
 
     class Meta:
         ordering = ['-putdate']

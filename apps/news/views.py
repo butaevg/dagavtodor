@@ -29,7 +29,7 @@ def upload_pic(request, id):
                 pic = form.cleaned_data['pic'],
                 post_id = id)
             img.save()
-            return HttpResponseRedirect('news/upload_pic/%s/' % id)
+            return HttpResponseRedirect('/news/upload_pic/%s/' % id)
     form = NewsImgForm()
     post = News.objects.get(pk=id)
     return render(request, 'news/news_upload_pic.html', {'form': form, 'post': post})
