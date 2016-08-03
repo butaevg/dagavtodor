@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^pv/$', views.pv),
     url(r'^(?P<cat>[\w-]+)/$', views.show), 
     url(r'^depinfo/(?P<org_id>[0-9]+)/(?P<cat>[0-9]+)/$', views.depinfo),
+    url(r'^$', views.dep),
 ] 

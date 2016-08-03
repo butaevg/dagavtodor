@@ -1,7 +1,7 @@
 #coding: utf-8
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Org, Info
+from .models import Org, Info, Dep
 from users.models import DUser
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
@@ -27,3 +27,11 @@ def depinfo(request, org_id, cat):
 	org = DUser.objects.get(pk=org_id)
 	dep = Info.objects.filter(org_id=org_id, cat=cat).first()
 	return render(request, 'orgs/depinfo.html', {'orgs': orgs, 'org': org, 'dep': dep, 'cat': cat})
+
+def dep(request, id):
+    org = DUser.objects.get(id=id)
+    try:
+        org_info = Dep.objects.get(dep_id=id)
+    except Dep.DoesNotExist:
+        org_info = None
+    return render(request, 'orgs/dep_mainpage.html', {'org': org, 'org_info': org_info})

@@ -30,3 +30,14 @@ class Info(models.Model):
     catname = models.CharField(max_length=100)
     org_id = models.IntegerField()
     cat = models.IntegerField()
+
+
+
+class Dep(models.Model):
+    info = models.TextField(blank=True, verbose_name='Kontakty')
+    dep_id = models.IntegerField()
+
+class DepDoc(models.Model):
+    name = models.CharField(max_length=512, verbose_name='Название')
+    url = models.FileField(max_length=250, upload_to='deps', verbose_name='Файл')
+    dep_id = models.IntegerField()
