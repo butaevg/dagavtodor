@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^contacts/', include('contacts.urls')), 
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^docs/', include('docs.urls')), 
+    url(r'^dep(?P<id>[0-9]+)/$', include('orgs.urls')),
     url(r'^faq/', include('faq.urls')), 
     url(r'^orgs/', include('orgs.urls')), 
     url(r'^instagram/', include('instagram.urls')), 
