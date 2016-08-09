@@ -8,8 +8,8 @@ class ArticleMixin(object):
     model = Article
     success_url = '/articles/cp/'
 
-    def dispatch(self, *args, **kwargs):
-        return super(ArticleMixin, self).dispatch(*args, **kwargs)
+    #def dispatch(self, *args, **kwargs):
+        #return super(ArticleMixin, self).dispatch(*args, **kwargs)
 
 class ArticleList(ArticleMixin, ListView):
     pass
