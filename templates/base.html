@@ -13,83 +13,17 @@
 <script src="http://dagavtodor.ru/static/js/jquery.liMenuHor.js"></script>
 <script src="http://dagavtodor.ru/static/js/jquery.validationEngine.js"></script>
 <script src="http://dagavtodor.ru/static/js/jquery.tips.js"></script>
-
-<script>
-<!-- menu -->
-$(function()
-{
-	$('.menu_hor').liMenuHor();
-});
-
-<!-- news -->
-$(function() 
-{
-	var $items = $('#news>ul>li');
-	$items.mouseover(function() {
-		$items.removeClass('selected');
-		$(this).addClass('selected');
-
-		var index = $items.index($(this));
-		$('#news>div').hide().eq(index).show();
-	}).eq(0).mouseover();
-});
-
-<!-- tooltips -->
-$(function()
-{
-	$('.tip').liTip();
-});
-</script>
-
+<script src="http://dagavtodor.ru/static/js/datepicker.js"></script>
+<script type="text/javascript" src="http://dagavtodor.ru/static/js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="http://dagavtodor.ru/static/js/zebra_accordion.js"></script>
 <script type="text/javascript" src="http://dagavtodor.ru/static/js/fancybox/jquery.fancybox.js?v=2.1.4"></script>
 <link rel="stylesheet" type="text/css" href="http://dagavtodor.ru/static/js/fancybox/jquery.fancybox.css?v=2.1.4" media="screen" />
 <script type="text/javascript" src="http://dagavtodor.ru/static/js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('.fancybox').fancybox();
-			});
-			
-		$(document).ready(function() {
-			$(".various").fancybox({
-				maxWidth	: 800,
-				maxHeight	: 600,
-				fitToView	: false,
-				width		: '70%',
-				height		: '70%',
-				autoSize	: true,
-				closeClick	: false,
-				openEffect	: 'elastic',
-				closeEffect	: 'elastic'
-			});
-		});
-</script>
-
-<!-- calendar -->
-<script src="http://dagavtodor.ru/static/js/datepicker.js"></script>
-
-<!-- Table Sorter -->
-<script type="text/javascript" src="http://dagavtodor.ru/static/js/jquery.tablesorter.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() 
-    { 
-        $("#pogoda_table").tablesorter(); 
-    } 
-);
-</script>
-
-<!-- accordion -->
-<script type="text/javascript" src="http://dagavtodor.ru/static/js/zebra_accordion.js"></script>
-<script type="text/javascript">
-$(document).ready(function() 
-    {
-        new $.Zebra_Accordion($('.Zebra_Accordion'));
-    }
-);
-</script>
+<script type="text/javascript" src="http://dagavtodor.ru/static/js/dad.js"></script>
 </head>
 
 <body>
-<script type="text/javascript" src="http://navigator.e-dag.ru/js/widget.js"></script>
+<!--<script type="text/javascript" src="http://navigator.e-dag.ru/js/widget.js"></script>-->
 <div id="container">
 
 	<div id="lenta">
@@ -98,7 +32,7 @@ $(document).ready(function()
 		</div>
 		<div class="soc_icons">
 			<a href="http://instagram.com/dagavtodor" target=blank><img src="static/img/social/insta.png"></a>&nbsp;&nbsp;&nbsp;
-			<a href="https://www.facebook.com/%D0%94%D0%B0%D0%B3%D0%B0%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80-187765401557716/" target=blank><img src="static/img/social/facebook.png"></a>
+			<a href="https://www.facebook.com/dagavtodor/" target=blank><img src="static/img/social/facebook.png"></a>
 		</div>
 	</div>
 	
@@ -138,8 +72,8 @@ $(document).ready(function()
 						<li><a href="page/informaciya-po-go-i-chs/">Информация по ГО и ЧС</a></li>
 						<li><a href="page/gosuslugi/">Государственные услуги</a></li>
 						<li><a href="page/informacionnye-sistemy">Информационные системы</a></li>
-						<li><a href="page/oficialnye-meropriyatiya/">Официальные мероприятия</a></li>
-						<li><a href="page/oficialnye-vystupleniya/">Официальные выступления</a></li>
+						<li><a href="page/14/">Официальные мероприятия</a></li>
+						<li><a href="page/15/">Официальные выступления</a></li>
 					</ul>
 				</li>
 				<li><a>ДОРОЖНОЕ ХОЗЯЙСТВО</a>
