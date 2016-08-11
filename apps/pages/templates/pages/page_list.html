@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}  {% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>{{pages_sec}}</h3>
+        
+       {% for page in pages %} 
+       <p><a href="page/{{page.slug}}/">{{page.title}}</a></p>
+       {% endfor %} 
+
+	</div>
+
+{% endblock %}
