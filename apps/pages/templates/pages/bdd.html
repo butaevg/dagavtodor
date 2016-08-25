@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Безопасность дорожного движения :: Дагестанавтодор{% endblock %}
+
+{% block content %}
+
+	<div id="page">
+		<h3>{{ page.title }}</h3>
+
+		<table class=docs_table><tr>
+			  <td><table class=docs_menu_table>
+				<tr><td><a href=page/bdd/bezopasnost-dorozhnogo-dvizheniya/>Главная страница раздела</a></td></tr>
+				<tr><td><a href=page/bdd/normativnye-pravovye-akty-po-voprosam-obespecheniya-bdd/>Нормативные правовые акты по вопросам обеспечения БДД</a></td></tr> 
+				<tr><td><a href=page/bdd/podrobnye-pokazateli-sostoyaniya-bezopasnosti-dorozhnogo-dvizheniya/>Подробные показатели состояния безопасности дорожного движения</a></td></tr> 
+				<tr><td><a href=page/bdd/regionalnye-programmy-po-bdd/>Региональные программы по БДД</a></td></tr> 
+				<tr><td><a href=page/bdd/informaciya-o-vladelcah-dorog/>Информация о владельцах дорог</a></td></tr> 
+				<tr><td><a href=page/bdd/dokumenty/>Документы</a></td></tr> 
+				<tr><td><a href=page/bdd/svedeniya-o-mezhvedomstvennom-vzaimodejstvii-po-bdd/>Сведения о межведомственном взаимодействии по БДД</a></td></tr> 
+				<tr><td><a href=page/bdd/regionalnaya-komissiya-po-bdd/>Региональная комиссия по БДД</a></td></tr> 
+				<tr><td><a href=page/bdd/uchastie-obshestvennyh-obedinenij-v-rabote-po-bdd/>Участие общественных объединений в работе по БДД</a></td></tr> 
+				<tr><td><a href=page/bdd/rabota-po-obucheniyu-grazhdan/>Работа по обучению граждан</a></td></tr> 
+				<tr><td><a href=page/bdd/materialy-socialnoj-reklamy/>Материалы социальной рекламы</a></td></tr> 
+				<tr><td><a href=page/bdd/ssylki-na-sajty-vedomstv/>Ссылки на сайты ведомств</a></td></tr>
+		</table></td><td style='padding-left: 20px;'>
+				<p>{{ page.body|safe|linebreaksbr }}</p>
+		</td></tr></table>
+
+	</div>
+
+{% endblock %}

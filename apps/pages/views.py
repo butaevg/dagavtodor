@@ -15,3 +15,6 @@ def pages(request, section):
 
 class PageDetail(DetailView):
     model = Page
+
+class BDD(PageDetail):
+    template_name = 'pages/bdd.html'
