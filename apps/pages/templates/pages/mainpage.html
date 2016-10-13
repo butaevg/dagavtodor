@@ -8,33 +8,7 @@
 {% block content %}
 <!--<div id="content">-->
 
-        <div id="news_block">
-            <div class="title_blue">
-				<span class="title_txt">Новости</span> 
-				<div class="all_link"><a href="news/archive/">Все новости</a></div>
-			</div>
-
-    		<div id="news">
-    			<ul>
-    				{% for post in posts %}
-    					<li><a href="news/{{ post.id }}/"/><h3>{{ post.name }}</h3></a><span>
-    					{% localtime off %}
-    						{{ post.putdate }}
-    					{% endlocaltime %}</span><i></i></li>				
-    				{% endfor %}								
-    			</ul>
-    			{% for post in posts %}
-    				<div>
-    				{% thumbnail post.mainpic "397x265" crop="center" as im %}
-    					<img src="{{ im.url }}">
-    				{% endthumbnail %}
-    				</div>
-    			{% endfor %}				
-    		</div>
-		
-		</div>
-		
-		<div id="sidebar">
+        <div id="sidebar">
 		    <div class="title_blue">
 				<span class="title_txt">{% if user.is_authenticated %} {{ user.name }} {% else %} Авторизация {% endif %}</span> 
 			</div>
@@ -55,8 +29,6 @@
 				<div id="cam"><a href="reports/weather/"><img src='static/img/sidebar/pogoda.png'></a></div>
 				<div id="cam"><a href="roads/progress/112/"><img src='static/img/sidebar/xod.png'></a></div>
 				<div id="cam"><a href="webcam/ip/"><img src='static/img/sidebar/videomon.jpg'></a></div>
-				<div id="cam"><a href="photo/"><img src='static/img/sidebar/photo.png'></a></div>
-				<div id="cam"><a href="page/turizm/"><img src='static/img/sidebar/tourizm.png'></a></div>
 			</ul>	
 		</div>
 
@@ -92,10 +64,10 @@
 					<span class="title_txt">Интернет-ресурсы</span> 
 				</div>
 				<ul>
-					<div class="bn"><a href="http://mintrans.ru/" target="blank"><img src='http://dagavtodor.ru/static/img/banners/mintransrf.png' title="Министерство транспорта Pоссийской Федерации"></a></div>
-					<div class="bn"><a href="http://rosavtodor.ru/" target="blank"><img src='http://dagavtodor.ru/static/img/banners/rosavtodor.png' title="Федеральное дорожное агентство (Росавтодор)"></a></div>					
-					<div class="bn"><a href="http://pravo.gov.ru/" target="blank"><img src='http://dagavtodor.ru/static/img/banners/gspi.png' title="Официальный интернет-портал правовой информации"></a></div>
-					<div class="bn"><a href="http://daggossluzhba.ru/" target="blank"><img src='http://dagavtodor.ru/static/img/banners/daggossluzhba.png' title="Республиканский портал государственной службы и кадров"></a></div>			
+					<div class="bn"><a href="http://mintrans.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/mintransrf.png' title="Министерство транспорта Pоссийской Федерации"></a></div>
+					<div class="bn"><a href="http://rosavtodor.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/rosavtodor.png' title="Федеральное дорожное агентство (Росавтодор)"></a></div>					
+					<div class="bn"><a href="http://pravo.gov.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/gspi.png' title="Официальный интернет-портал правовой информации"></a></div>
+					<div class="bn"><a href="http://daggossluzhba.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/daggossluzhba.png' title="Республиканский портал государственной службы и кадров"></a></div>			
 				</ul>
 			</div>
 			
