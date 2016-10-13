@@ -41,13 +41,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles', 
-    'adverts', 
-    'articles', 
     'camera', 
     'contacts', 
     'docs', 
     'django_summernote', 
-    'faq', 
     'instagram',
     'machines',
     'maps',
@@ -56,7 +53,6 @@ INSTALLED_APPS = (
     'orders', 
     'pages', 
     'psd',
-    'photo', 
     'reports', 
     'roads', 
     'sorl.thumbnail', 
@@ -117,14 +113,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
