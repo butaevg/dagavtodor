@@ -41,7 +41,6 @@
 				<th width=6%>Проезжаемость на дорогах местн. значения</th>
 				<th>Проводимые работы</th>
 				<th width=4%>Instagram</th>
-				<th width=5%>Email</th><tr>
 			</thead>
 						
 			{% for row in rows %}
@@ -55,8 +54,7 @@
 			<td>{{ row.pr_r }}</td>
 			<td>{{ row.pr_m }}</td>
 			<td>{{ row.works }}</td>
-			<td><a href="https://instagram.com/{{ row.rayon.insta }}/" target="_blank"><img src="http://dagavtodor.ru/static/img/social/insta.png" width="25"></a></td>
-			<td><a href="https://e.mail.ru/login?email=dep45sod@mail.ru" target="_blank"><img src="http://dagavtodor.ru/static/img/icons/bred.png" width="25"></a></td>
+			<td><a href="https://instagram.com/{{ row.rayon.insta }}/" target="_blank"><img src="http://dk.dagavtodor.ru/static/img/social/insta.png" width="25"></a></td>
 			</tr>
 			
 		 	{% endfor %}

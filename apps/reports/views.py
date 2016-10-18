@@ -21,7 +21,7 @@ def weather(request):
             df = '%d.%m.%Y'
 
             rows = Weather.objects.raw('SELECT * FROM reports_weather WHERE DATE_FORMAT(putdate, %s) = %s', [df, date])    
-            all_list = "<a href=reports/weather/>Весь список</a>"
+            all_list = "<a href=reports/weather/>Последние данные</a>"
             return render(request, 'reports/weather.html', {'rows': rows, 'form': form, 'all_list': all_list})
     else:
         rows = WeatherCurrent.objects.all()
