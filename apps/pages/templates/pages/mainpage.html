@@ -7,33 +7,9 @@
 
 {% block content %}
 <!--<div id="content">-->
-
-        <div id="sidebar">
-		    <div class="title_blue">
-				<span class="title_txt">{% if user.is_authenticated %} {{ user.name }} {% else %} Авторизация {% endif %}</span> 
-			</div>
-			<ul>
-				<div id="cam">
-					{% if user.is_authenticated %}
-					    <a href=user/cp/><span>Личный кабинет</span></a><br>
-					    <a href=user/logout/><span>Выход</span></a><br><br>
-					{% else %}                                         
-						<form action="user/login/" method="post">
-    					{% csrf_token %}
-    					<input type="text", name="username", placeholder=" логин">
-    					<input type="password", name="password", placeholder=" пароль">
-    					<input type="submit" value="Вход">
-    					</form>
-					{% endif %}				
-				</div>
-				<div id="cam"><a href="reports/weather/"><img src='static/img/sidebar/pogoda.png'></a></div>
-				<div id="cam"><a href="roads/progress/112/"><img src='static/img/sidebar/xod.png'></a></div>
-				<div id="cam"><a href="webcam/ip/"><img src='static/img/sidebar/videomon.jpg'></a></div>
-			</ul>	
-		</div>
-
-		<div id="panel">
-			<div id="panel_info">
+		
+		<div id="col1">
+		    <div class="sq">
 				<div class="title_blue">
 					<span class="title_txt">Ход работ</span> 
 					<div class="all_link"><a href="roads/progress/112/">Все объекты</a></div>
@@ -42,36 +18,26 @@
 					<li><a href="roads/progress/112/">Реконструкция автомобильной дороги Махачкала - Каспийск</a></li>
 					<li><a href="roads/progress/108/">Реконструкция автомобильной дороги Агвали - Шаури - Кидеро</a></li>
 					<li><a href="roads/progress/71/">Реконструкция автомобильной дороги Ботлих - Карата</a></li>
+					<li><a href="roads/progress/73/">Реконструкция а/д Манас – Сергокала – Первомайское</a></li>
+					<li><a href="roads/progress/93/">Реконструкция автомобильной дороги Муни - Агвали</a></li>
+					<li><a href="roads/progress/71/">Реконструкция автомобильной дороги Грозный-Ботлих-Хунзах-Араканская площадка</a></li>
+					<li></li>
 				</ul>
 			</div>
-			
-			<div id="panel_docs">
+			<div class="sq">
 				<div class="title_blue">
-					<span class="title_txt">Документы</span> 
-					<div class="all_link"><a href="docs/">Все документы</a></div>
+					<span class="title_txt">Видеомониторинг</span> 
+					<div class="all_link"><a href="webcam/ip/">Подробнее</a></div>
 				</div>
 				<ul>
-				    <li><a href=upload/docs/Приказ_от_1_июня_2016_г._25_О_введении_временного_ограничения.pdf target="blank">Приказ от 1 июня 2016 г. №25 О введении временного ограничения движения транспортных средств по мосту...</a></li>
-				    <li><a href=upload/docs/График_представления_отчетов_за_2015_год_8oidqbM.pdf target="blank">График представления бухгалтерской отчетности ДЭП за 2015 год</a></li>
-					<li><a href=upload/docs/Постановление_Правительства_РД_от_26.01.2016_г.__11_Вопросы_Агентства_по_дорожному_хозяйству_РД.pdf target="blank">Постановление Правительства РД от 26.01.2016 г. № 11 Вопросы Агентства по дорожному хозяйству Республики Дагестан</a></li>
+					<li><a href="http://media.dagavtodor.ru/videomonitoring/gsm/1/">Автодорога Урма-Губден (в сторону с.Урма)</a></li>
+					<li><a href="http://media.dagavtodor.ru/videomonitoring/gsm/7/">Автодорога Урма-Губден (в сторону с.Губден)</a></li>
+					<li><a href="http://media.dagavtodor.ru/videomonitoring/gsm/5/">Автодорога Махачкала-Аэропорт</a></li>
+					<li><a href="http://media.dagavtodor.ru/videomonitoring/gsm/9/">Северный подъезд к Гимринскому а/д тоннелю</a></li>
+					<li></li>
 				</ul>
 			</div>
-		</div>
-
-		<div id="panel">
-			<div id="panel_info">
-				<div class="title_blue">
-					<span class="title_txt">Интернет-ресурсы</span> 
-				</div>
-				<ul>
-					<div class="bn"><a href="http://mintrans.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/mintransrf.png' title="Министерство транспорта Pоссийской Федерации"></a></div>
-					<div class="bn"><a href="http://rosavtodor.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/rosavtodor.png' title="Федеральное дорожное агентство (Росавтодор)"></a></div>					
-					<div class="bn"><a href="http://pravo.gov.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/gspi.png' title="Официальный интернет-портал правовой информации"></a></div>
-					<div class="bn"><a href="http://daggossluzhba.ru/" target="blank"><img src='http://dk.dagavtodor.ru/static/img/banners/daggossluzhba.png' title="Республиканский портал государственной службы и кадров"></a></div>			
-				</ul>
-			</div>
-			
-			<div id="panel_docs">
+			<div class="sq">
 				<div class="title_blue">
 					<span class="title_txt">Экстренные службы</span> 
 				</div>
@@ -81,7 +47,91 @@
 					<li><span><b>ГИБДД: </b>99-46-96 (дежурный)</span></li>
 					<li><span><b>Скорая помощь: </b>030 (моб. тел.)</span></li>	
 					</ul>
+			</div>			
+		</div><!--end col1-->
+
+		<div id="col3">
+			<div class="sq">
+			    <div class="title_blue">
+					<span class="title_txt">{% if user.is_authenticated %} {{ user.name }} {% else %} Авторизация {% endif %}</span> 
+				</div>
+				<ul>
+					<div class="cam">
+						{% if user.is_authenticated %}
+						    <a href=user/cp/><span>Личный кабинет</span></a><br>
+						    <a href=user/logout/><span>Выход</span></a><br><br>
+						{% else %}                                         
+							<form action="user/login/" method="post">
+	    					{% csrf_token %}
+	    					<input type="text", name="username", placeholder=" логин">
+	    					<input type="password", name="password", placeholder=" пароль">
+	    					<input type="submit" value="Вход">
+	    					</form>
+						{% endif %}				
+					</div>
+					<div class="cam"><a href="reports/weather/"><img src='static/img/sidebar/pogoda.png'></a></div>
+					<div class="cam"><a href="roads/progress/112/"><img src='static/img/sidebar/xod.png'></a></div>
+					<div class="cam"><a href="webcam/ip/"><img src='static/img/sidebar/videomon.jpg'></a></div>
+				</ul>	
 			</div>
-		</div>
+		</div><!--end col3-->
+
+		<div id="col2">
+			<div class="sq">
+				<div class="title_blue">
+					<span class="title_txt">Дорожные и погодные условия</span> 
+					<div class="all_link"><a href="reports/weather/">Подробнее</a></div>
+				</div>
+                <table class="mainpage_weather">
+                	{% for row in rows %}
+					<tr>
+					<td align=left>{{ row.rayon.name }}</td>
+					<td>
+					{% if row.sost == "ясно" %}
+					    <img src="http://dk.dagavtodor.ru/static/img/icons/weather/sun.png" title="ясно">
+					{% else %}
+					    {% if row.sost == "пасмурно" %}
+					        <img src="http://dk.dagavtodor.ru/static/img/icons/weather/overcast.png" title="пасмурно">
+					    {% else %}
+					        {% if row.sost == "туман" %}
+					            <img src="http://dk.dagavtodor.ru/static/img/icons/weather/foggy.png" title="туман">
+					        {% else %}
+					            {% if row.sost == "дождь" %}
+					            	<img src="http://dk.dagavtodor.ru/static/img/icons/weather/rain.png" title="дождь">
+					        	{% else %}
+					                <img src="http://dk.dagavtodor.ru/static/img/icons/weather/snow.png" title="снег">
+					            {% endif %}    
+					        {% endif %}
+					    {% endif %}
+					{% endif %}
+					</td>
+					<td>{{ row.temp }} &deg;</td>
+					<td>
+						
+                    {% if row.pr_r == "покрытие дорог сухое" %}
+				        дороги сухие
+					{% else %}
+					    {% if row.sost == "покрытие дорог мокрое" %}
+					        дороги мокрые
+					    {% else %}
+					        {% if row.sost == "снег" or row.sost == "снежный накат" %}
+					            на дорогах снег
+					        {% else %}
+					            {% if row.sost == "слаб. гололедица" or row.sost == "гололед" %}
+					            	гололед
+					        	{% else %}
+					                подсыпаны ПГМ
+					            {% endif %}    
+					        {% endif %}
+					    {% endif %}
+					{% endif %}
+
+					</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>		
+		</div><!--end col2-->
+
 
 {% endblock %}

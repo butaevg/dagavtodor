@@ -34,11 +34,12 @@
 		<table id="pogoda_table" align="center" class="tablesorter">
 			<thead><tr><th width=16% align=left>Район</th>
 				<th width=10% style='display:none'>Дата и время сводки</th>
-				<th width=10%>Дата и время сводки</th>
+				<th width=10%>Дата</th>
+				<th width=7% style='display:none'>Погода</th>
 				<th width=7%>Погода</th>
-				<th width=5%>Темп.(С)</th>
-				<th width=6%>Проезжаемость на дорогах респ. значения</th>
-				<th width=6%>Проезжаемость на дорогах местн. значения</th>
+				<th width=5%>С&deg;</th>
+				<th width=6%>Республ. дороги</th>
+				<th width=6%>Местные дороги</th>
 				<th>Проводимые работы</th>
 				<th width=4%>Instagram</th>
 			</thead>
@@ -49,7 +50,28 @@
 			<td align=left>{{ row.rayon.name }}</td>
 			<td>{{ row.putdate }}</td>
 			<td style='display:none'>{{ row.putdate|date:"Y-m-d" }}</td>
-			<td>{{ row.sost }}</td>
+			<td>
+
+				{% if row.sost == "ясно" %}
+					    <img src="http://dk.dagavtodor.ru/static/img/icons/weather/sun.png" title="ясно">
+					{% else %}
+					    {% if row.sost == "пасмурно" %}
+					        <img src="http://dk.dagavtodor.ru/static/img/icons/weather/overcast.png" title="пасмурно">
+					    {% else %}
+					        {% if row.sost == "туман" %}
+					            <img src="http://dk.dagavtodor.ru/static/img/icons/weather/foggy.png" title="туман">
+					        {% else %}
+					            {% if row.sost == "дождь" %}
+					            	<img src="http://dk.dagavtodor.ru/static/img/icons/weather/rain.png" title="дождь">
+					        	{% else %}
+					                <img src="http://dk.dagavtodor.ru/static/img/icons/weather/snow.png" title="снег">
+					            {% endif %}    
+					        {% endif %}
+					    {% endif %}
+					{% endif %}
+
+			</td>
+			<td style='display:none'>{{ row.sost }}</td>
 			<td>{{ row.temp }}</td>
 			<td>{{ row.pr_r }}</td>
 			<td>{{ row.pr_m }}</td>
