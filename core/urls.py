@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^instagram/', include('instagram.urls')), 
     url(r'^machines/', include('machines.urls')),
     url(r'^maps/', include('maps.urls')),
-    url(r'^news/', include('news.urls')), 
     url(r'^orders/', include('orders.urls')),
     url(r'^page/', include('pages.urls')),  
     url(r'^psd/', include('psd.urls')),

@@ -47,7 +47,6 @@ INSTALLED_APPS = (
     'instagram',
     'machines',
     'maps',
-    'news',
     'orgs', 
     'orders', 
     'pages', 
