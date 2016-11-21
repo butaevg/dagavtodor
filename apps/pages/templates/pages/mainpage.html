@@ -39,6 +39,19 @@
 			</div>
 			<div class="sq">
 				<div class="title_blue">
+					<span class="title_txt">Передовые технологии</span> 
+					<!--<div class="all_link"><a href="">Подробнее</a></div>-->
+				</div>
+				<ul>
+					<li><a href="page/geoinformacionnaya-sistema">Геоинформационная система</a></li>
+					<li><a href="page/asfaltobetonnye-zavody">Современные асфальтобетонные заводы</a></li>
+					<li><a href="page/3d-nivelirovanie">3D-нивелирование</a></li>
+					<li><a href="page/videomonitoring-dorozhnyh-rabot">Видеомониторинг дорожных работ</a></li>					
+					<li></li>
+				</ul>
+			</div>
+			<div class="sq">
+				<div class="title_blue">
 					<span class="title_txt">Экстренные службы</span> 
 				</div>
 				<ul>
@@ -85,6 +98,7 @@
                 <table class="mainpage_weather">
                 	{% for row in rows %}
 					<tr>
+					<td align=left width="40">{{ row.putdate|date:"d.m" }}</td>
 					<td align=left>{{ row.rayon.name }}</td>
 					<td>
 					{% if row.sost == "ясно" %}
