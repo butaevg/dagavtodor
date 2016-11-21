@@ -9,7 +9,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)), 
     url(r'^webcam/', include('camera.urls')),
     url(r'^summernote/', include('django_summernote.urls')),
-    url(r'^docs/', include('docs.urls')), 
     url(r'^dep(?P<id>[0-9]+)/$', include('orgs.urls')),
     url(r'^orgs/', include('orgs.urls')), 
     url(r'^instagram/', include('instagram.urls')), 
