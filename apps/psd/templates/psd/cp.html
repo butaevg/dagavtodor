@@ -23,6 +23,7 @@
 				<div class=pipe><div style='width: {{row.exe_perc}}%'></div></div>
 				<div class=pipe2><div style='width: {{row.exe_getsum}}%'></div></div>
 			</td>
+			<td><i>Обновлено<br> {{row.updated_at|date:"d.m.Y"}}</i></td>
 		</tr>
 	{% endfor %} 
 	</table><br><br>

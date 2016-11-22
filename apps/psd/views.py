@@ -29,7 +29,7 @@ def psd_exec(request, id):
                 getsum = getsum, 
                 exe_perc = round((exe/price)*100), 
                 exe_getsum = round((getsum/price)*100))
-            road.save(update_fields=['price', 'exe', 'getsum', 'exe_perc', 'exe_getsum', ])
+            road.save(update_fields=['price', 'exe', 'getsum', 'exe_perc', 'exe_getsum', 'updated_at', ])
             return HttpResponseRedirect('/psd/my/')
     else:
         road = Psd.objects.get(pk=id)

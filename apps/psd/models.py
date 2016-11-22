@@ -10,6 +10,7 @@ class Psd(models.Model):
     exe_perc = models.IntegerField(blank=True, default=0, verbose_name='Выполнение, %')
     getsum = models.FloatField(blank=True, verbose_name='Получено')
     exe_getsum = models.IntegerField(blank=True, default=0, verbose_name='Получено, %')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Date')
   
     def __unicode__(self):
         return self.name

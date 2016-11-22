@@ -8,14 +8,16 @@
 
 	<h2>Мои проекты</h2><br><br>
 
-	<table class="cp_table"><tr><th width="70%">Проект</th><th width="100">Стоимость, тыс.</th><th width="100">Получено, тыс.</th><th width="100">Выполнение, тыс.</th></tr>
+	<table class="cp_table"><tr><th width="70%">Проект</th><th width="100">Стоимость, тыс.</th><th width="100">Получено, тыс.</th><th width="100">Выполнение, тыс.</th>
+	<th width="100">Дата обновления</th></tr>
 	
 	{% for row in roads %}
 		<tr>
 			<td><a href=psd/exec/{{row.id}}/>{{row.name}}</a></td> 
 			<td>{{row.price}}</td>
 			<td>{{row.getsum}}</td>
-			<td>{{row.exe}}</td>
+			<td>{{row.exe}}</td> 
+			<td>{{row.updated_at|date:"d.m.Y"}}</td>
 		</tr>
 	{% endfor %}
 	
