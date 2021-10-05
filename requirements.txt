@@ -1,6 +1,6 @@
 Django==1.8.2
 MySQL-python==1.2.5
-Pillow==3.3.0
+pillow>=8.3.2
 django-widget-tweaks==1.4.1
 sorl-thumbnail==12.3 
 django-summernote==0.8.3 
